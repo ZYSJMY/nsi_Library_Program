@@ -1,0 +1,26 @@
+<view class="resumeBox">
+  <view class="success">个人简历 提交成功</view>
+  <view class="uploadTitle">您还可以上传附件让我们更了解你！</view>
+  <view bindtap="uploadFile" class="uploadFile">
+    <mp-icon icon="add" color="#ccc" size="{{30}}" class="addIcon"></mp-icon>
+    <text class="addText">上传文件</text>
+  </view>
+  <view class="fileName">{{fileName}}</view>
+  <view class="hrLine"></view>
+  <view class="addTag">
+    <text>添加标签：</text>
+    <input wx:if="{{inputVisible}}" class="inputVisible" bindblur="addInputTag"></input>
+     <button wx:else class="mini-btn" size="mini" bindtap="addInput">+ 添加 {{ dynamicTags.length }}/5</button>
+     <view wx:for="{{dynamicTags}}" wx:for-item="tag" class="tagButton">
+      <text>{{tag}}</text>
+      <mp-icon icon="close" color="#fff" size="{{16}}" bindtap="closeTag" data-tag="{{tag}}" data-tagIndex="{{index}}"></mp-icon>
+     </view>
+  </view>
+  <view class="tag">
+    <text  bindtap="add_tag" data-tag="{{tag1}}">{{tag1}}</text>
+    <text  bindtap="add_tag" data-tag="{{tag2}}">{{tag2}}</text>
+    <text  bindtap="add_tag" data-tag="{{tag3}}">{{tag3}}</text>
+    <text  bindtap="add_tag" data-tag="{{tag4}}">{{tag4}}</text>
+  </view>
+  <button bindtap="sumbit" type="primary" class="submit" size="mini">提交</button>
+</view>

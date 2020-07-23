@@ -1,0 +1,38 @@
+/* pages/modifyMy.wxss */
+.modifyMy{
+  padding: 10px 20px;
+}
+.modifyMy .title{
+  font-size: 24px;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+}
+.modifyMy .modifyMy-portrait{
+  padding:  10px 0;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  display: flex;
+}
+.modifyMy .modifyMy-portrait text{
+  width: 50%;
+  font-size: 18px;
+  color: rgb(78, 78, 78);
+}
+.modifyMy .modifyMy-portrait input{
+  /* overflow: visible; */
+  text-align: right;
+  margin-top: 10px;
+}
+.modifyMy .btn{
+  height: 50px;
+  line-height: 50px;
+  width: 50%;
+  margin: 20px auto 10px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 6px;
+  background-color: #215089;
+}

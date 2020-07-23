@@ -1,0 +1,21 @@
+<!--pages/modifyMy.wxml-->
+ <view class="modifyMy">
+    <view class="title">登录&绑定微信</view>
+    <view class="modifyMy-portrait">
+      <text>邮箱</text>
+      <input type="text" value="{{username}}" placeholder="请输入邮箱" bindblur="username"></input>
+    </view>
+    <view class="modifyMy-portrait">
+      <text>密码</text>
+      <input type="text" value="{{password}}" placeholder="请输入密码" bindblur="password"></input>
+    </view>
+    <view class="btn" bindtap="submission">
+      登录
+    </view>
+    <view class="password" bindtap="forgetPwd">
+      忘记密码
+    </view>
+    <view class="introduce">
+      四库全书PC版与小程序账号通用
+    </view>
+  </view>

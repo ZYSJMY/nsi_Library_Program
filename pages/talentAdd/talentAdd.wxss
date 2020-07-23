@@ -1,0 +1,123 @@
+.uploadImg{
+  text-align: center;
+  margin:15px 0 5px;
+}
+.avatar{
+  width:150px;
+  height:150px;
+  border:1px solid #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+.editIcon{
+  position: absolute;
+  top: 15px;
+  left: 58%;
+}
+.weui-uploader__bd {
+  display: flex;
+  justify-content: center;
+}
+.weui-cells__title{
+  font-size: 18px !important;
+  background: #215089;
+  padding: 10px;
+  color: #fff;
+  margin: 0;
+}
+.weui-cells{
+  margin-top:0px;
+}
+.weui-cell{
+  padding:10px 20px;
+}
+.weui-select{
+  padding-left:0;
+  height: 30px;
+  line-height: 30px;
+}
+radio-group{
+  display: flex;
+  border-bottom: 1px solid var(--weui-FG-3);
+  margin:0 20px;
+}
+.salaryNumber{
+  border: 1px solid #ccc;
+  width: 50px;
+  margin-top: 12px;
+  display: inline-block;
+  padding:0 5px;
+  border-radius: 2px;
+  font-size: 12px;
+}
+.sex{
+  display: inline-block;
+  line-height: 46px;
+}
+.salary{
+  display: inline-block;
+  line-height: 46px;
+}
+.weui-check__label{
+  display: flex;
+  margin-top:10px;
+}
+.weui-check__label:first-of-type{
+  padding-left:68px;
+}
+.weui-check__label:last-of-type{
+  padding-left:10px;
+  padding-right:5px;
+}
+.weui-check__label:hover{
+  background:#fff;
+}
+.addBox{
+  border-top: 2px solid #ccc;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.addBox:first-of-type{
+  border-top:0;
+  /* padding-top:10px; */
+}
+.weui-cell:before{
+  border-top:0;
+}
+.weui-cell{
+  border-bottom: 1px solid var(--weui-FG-3);
+  margin:0 20px;
+  padding:10px 0;
+}
+.addBox mp-cell:first-of-type{
+  border-top:0;
+}
+
+mp-cells{
+  position:relative;
+}
+.addWorkExperience,.addEducation,.addTrain{
+  font-size:16px;
+  position: absolute;
+  bottom: 22px;
+  left: 20px;
+}
+.addWorkExperience text,.addEducation text,.addTrain text{
+  vertical-align: middle;
+  margin-left:2px;
+}
+.deleteBox{
+  text-align: right;
+  margin:10px 20px;
+}
+.deleteBox image{
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.deleteWorkExperience,.deleteEducation,.deleteTrain{
+  color: #E64340;
+  vertical-align: middle;
+}
+  

@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/school/schoolList/schoolList",
+    "pages/school/schoolDetail/schoolDetail",
+    "pages/news/newsList/newsList",
+    "pages/news/newsDetail/newsDetail",
+    "pages/company/companyList/companyList",
+    "pages/company/companyDetail/companyDetail",
+    "pages/myInfor/myInfor",
+    "pages/dashboard/about/about",
+    "pages/dashboard/errmsg/errmsg",
+    "pages/dashboard/feedback/feedback",
+    "pages/dashboard/service/service",
+    "pages/talentAdd/talentAdd",
+    "pages/resume/resume",
+    "pages/forgetPwd/forgetPwd",
+    "pages/wechatBind/wechatBind",
+    "pages/login/login",
+    "pages/modifyMy/modifyMy",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "selectedColor": "#215089",
+    "list": [
+      {
+        "pagePath": "pages/school/schoolList/schoolList",
+        "text": "国际学校库",
+        "iconPath": "static/flag.png",
+        "selectedIconPath": "static/flag2.png"
+      },
+      {
+        "pagePath": "pages/company/companyList/companyList",
+        "text": "教育机构库",
+        "iconPath": "static/3.png",
+        "selectedIconPath": "static/4.png"
+      },
+      {
+        "pagePath":"pages/news/newsList/newsList",
+        "text": "教育资讯",
+        "iconPath": "static/7.png",
+        "selectedIconPath": "static/8.png"
+      },
+      {
+        "pagePath": "pages/myInfor/myInfor",
+        "text": "关于",
+        "iconPath": "static/9.png",
+        "selectedIconPath": "static/10.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#215089",
+    "navigationBarTitleText": "新学说国际学校四库全书",
+    "navigationBarTextStyle": "white"
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx239dd449dc72d145"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

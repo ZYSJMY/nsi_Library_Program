@@ -1,0 +1,57 @@
+/* pages/forgetPwd.wxss */
+
+.forgetPwd{
+  position: absolute;
+  top: 33%;
+  padding: 0 10px;
+}
+.forgetPwd .title{
+  font-size: 24px;
+  text-align: center;
+  /* border-bottom: 1px solid rgb(240, 240, 240); */
+}
+.forgetPwd .lianjie{
+  font-size: 24px;
+  text-align: center;
+  color:#576b95;
+}
+/* .modifyMy .modifyMy-portrait{
+  padding:  10px 0;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  display: flex;
+}
+.modifyMy .modifyMy-portrait text{
+  width: 30%;
+  font-size: 18px;
+  color: rgb(78, 78, 78);
+}
+.modifyMy .modifyMy-portrait input{
+  width: 70%;
+  text-align: right;
+  margin-top: 10px;
+}
+.modifyMy .btn{
+  height: 50px;
+  line-height: 50px;
+  width: 50%;
+  margin: 40px auto 10px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 6px;
+  background-color: #215089
+}
+.modifyMy .password{
+  text-align: center;
+  font-size: 14px;
+  color:#576b95;
+  font-weight: 400;
+  margin-bottom: 4px; 
+}
+.modifyMy .introduce{
+  text-align: center;
+  font-size: 12px;
+  color:rgb(198, 198, 198);
+} */

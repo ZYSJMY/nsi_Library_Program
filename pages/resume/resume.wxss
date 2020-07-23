@@ -1,0 +1,87 @@
+/* pages/resume/resume.wxss */
+.resumeBox{
+  text-align: center;
+  padding:10px;
+}
+.uploadTitle{
+  font-size: 16px;
+  color:#bdbdbd;
+  margin:10px;
+}
+.uploadFile{
+  width: 100px;
+  height: 100px;
+  border: 1px dashed #ccc;
+  text-align: center;
+  display: inline-block;
+  margin:10px 0;
+}
+.addIcon{
+  display: flex;
+  justify-content: center;
+  margin-top:20px;
+}
+.addText{
+  display: flex;
+  justify-content: center;
+}
+.fileName{
+  font-size:14px;
+}
+.hrLine{
+  border-bottom:1px solid #bdbdbd;
+  margin:10px;
+}
+.inputVisible{
+  display: inline-block;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+  width: 80px;
+  border-radius: 5px;
+  padding:2px 0;
+}
+.tag{
+  margin:10px 0;
+}
+.tag text{
+  font-size: 12px;
+  border: 1px solid #ccc;
+  padding: 3px 8px;
+  border-radius: 5px;
+  border-color: #d9ecff;
+  color: #409EFF;
+  margin:0 2px;
+}
+.addTag{
+  font-size: 12px;
+  margin-top:20px;
+}
+.addTag button{
+  vertical-align: middle;
+  padding: 0px 10px;
+  font-size: 12px;
+}
+.addTag .tagButton{
+  font-size: 12px;
+  background: #215089;
+  color: #fff;
+  padding: 3px 8px;
+  margin-left: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom:10px;
+}
+.addTag .tagButton text{
+  vertical-align: middle;
+}
+.addTag .tagButton .weui-icon{
+  margin-left:5px;
+}
+.addTag .tagButton .weui-icon:hover{
+  color: #FFF;
+  background-color: #409eff;
+}
+.submit{
+  width: 20%;
+  margin-top: 20px;
+}

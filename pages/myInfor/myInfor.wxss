@@ -1,0 +1,59 @@
+.authorization{
+  font-size:14px;
+  color:#999;
+  line-height:35px;
+  text-align:center;
+  background:#f7f6fb;
+}
+.main{
+  background:#f6f2f3;
+  height:100%;
+}
+.linkBtn{
+  margin:2px 0;
+}
+.userLogo{
+  width:80px;
+  heightL:80px;
+  position:absolute;
+  left:50%;
+  margin-left:-40px;
+  top:50%;
+  margin-top:-80px;
+}
+.user{
+  position:relative;
+}
+.usrername{
+  position:absolute;
+  top:50%;
+  text-align:center;
+  width:100%;
+  color:#fff;
+  margin-top:20px;
+  font-size:22px;
+}
+.xinxueshuo{
+  width:80%;
+  height:60px;
+  position:absolute;
+  left:10%;
+  bottom:-25px;
+  background:#fff;
+  border-radius:10px;
+  z-index:99999;
+  text-align:center;
+  line-height:60px;
+  color:#333;
+}
+.linkBtn2{
+  margin-top:40px;
+}
+.section{
+  width: 100%;
+}
+.myAdvert{
+padding:5px;
+  padding:5px;border:1px solid #e5e5e5;
+  margin:10px;
+}
