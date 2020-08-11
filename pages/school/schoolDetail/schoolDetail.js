@@ -8,11 +8,11 @@ Page({
   },
   data: {
     showBanner:[
-      {banner:""},
-      {banner:''},
-      {banner:''},
-      {banner:''},
-      {banner:''},
+      // {banner:""},
+      // {banner:''},
+      // {banner:''},
+      // {banner:''},
+      // {banner:''},
     ],
     oneFee:false,
     twoFee: false,
@@ -26,6 +26,14 @@ Page({
     inputPhone:"",
     inputRemark:"",
     inputGrade:"",
+    schoolSystemList:[],
+    courseList:[],
+    authenticationList:[],
+    indicatorDots: true,
+    vertical: false,
+    autoplay: true,
+    interval: 2000,
+    duration: 500
   },
   bindShowMsg() {
     let that=this
@@ -77,18 +85,31 @@ Page({
       },
       success(res) {
         console.log(res)
-        
         for (var value in res.data.data) {
           if (res.data.data[value] == 0 || res.data.data[value] == '0' || res.data.data[value] == null){
             res.data.data[value]='暂无'
           }
-          
         };
-        that.data.showBanner[0].banner = res.data.data.schoolShowOne
-        that.data.showBanner[1].banner = res.data.data.schoolShowTwo
-        that.data.showBanner[2].banner = res.data.data.schoolShowThird
-        that.data.showBanner[3].banner = res.data.data.schoolShowFour
-        that.data.showBanner[4].banner = res.data.data.schoolShowFive
+        if(res.data.data.schoolShowOne == '暂无'||res.data.data.schoolShowOne=='0'||res.data.data.schoolShowOne==null){
+        }else{
+          that.data.showBanner.push(res.data.data.schoolShowOne)
+        }
+        if(res.data.data.schoolShowTwo == '暂无'||res.data.data.schoolShowTwo=='0'||res.data.data.schoolShowTwo==null){
+        }else{
+          that.data.showBanner.push(res.data.data.schoolShowTwo)
+        }
+        if(res.data.data.schoolShowThird == '暂无'||res.data.data.schoolShowThird=='0'||res.data.data.schoolShowThird==null){
+        }else{
+          that.data.showBanner.push(res.data.data.schoolShowThird)
+        }
+        if(res.data.data.schoolShowFour == '暂无'||res.data.data.schoolShowFour=='0'||res.data.data.schoolShowFour==null){
+        }else{
+          that.data.showBanner.push(res.data.data.schoolShowFour)
+        }
+        if(res.data.data.schoolShowFive == '暂无'||res.data.data.schoolShowFive =='0'||res.data.data.schoolShowFive==null){
+        }else{
+          that.data.showBanner.push(res.data.data.schoolShowFive)
+        }
         if (res.data.data.schoolSystem.indexOf("幼儿园")!=-1){
           that.setData({
             oneFee:true
@@ -129,9 +150,11 @@ Page({
             })
           }
         }
-        
         that.setData({
             outfitdetail: res.data.data,
+            schoolSystemList: res.data.data.schoolSystem.split(";").filter(function (s) { return s && s.trim();}),
+            courseList: res.data.data.course.split(";").filter(function (s) { return s && s.trim();}),
+            authenticationList: res.data.data.authentication.split(";").filter(function (s) { return s && s.trim();}),
             showBanner: that.data.showBanner,
         })
         wx.setNavigationBarTitle({

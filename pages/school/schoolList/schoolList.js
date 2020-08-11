@@ -80,8 +80,10 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
+        for (var i = 0; i < res.data.data.list.length; i++) {
+          res.data.data.list[i].schoolSystem = res.data.data.list[i].schoolSystem.split(";").filter(function (s) { return s && s.trim();})
+        }
         let flagdata=wxdata.list.concat(res.data.data.list)
-        console.log(flagdata)
         if(flagdata.length==0){
           that.setData({
             liststatus: true,

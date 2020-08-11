@@ -1,21 +1,21 @@
-<view>
-  <view class="page-section">
-      <view class="page-section-spacing">
-        <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%;">
-          <view id="demo1" wx:for="{{showBanner}}"  wx:for-item="item" class="scroll-view-item_H demo-text-1 {{(item.banner=='暂无'||item.banner=='0'||item.banner==null)?'hide':'show'}}">
-            <!-- <image  src="{{item.banner}}" /> -->
-            <image  src="{{item.banner}}?x-oss-process=image/crop,w_800,h_450,g_center"/>
-
-          </view>
-        </scroll-view>
-      </view>
-    </view>
+<view class="schoolDetail">
+  <view class=" {{showBanner == ''?'hide':'container'}}" style="padding:0" >
+		<view class="page-body" style="width:100%">
+			<view class="page-section page-section-spacing swiper">
+				<swiper  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+					<block wx:for="{{showBanner}}" wx:key="*this" >
+						<swiper-item>
+								<image style="width: 100%;height: 150px;" src="{{item}}?x-oss-process=image/crop,w_800,h_450,g_center"/>
+						</swiper-item>
+					</block>
+				</swiper>
+			</view>
+		</view>
+	</view>
 	<view class="myshare"><button class="sharebutton" open-type="share"><i-icon type="send" size="24" color="#fff" /></button></view>
 	<view class="myshare2" bindtap="clickMe"><button class="sharebutton"><i-icon type="homepage" size="24" color="#fff" /></button></view>
-	<!-- <view class="topColor"></view> -->
 	<view class="i-card">
 	         <view class="i-card-left">
-	         	<!-- <view class="i-card-left-top"><view class="topwhite"></view><view class="outTopBlue"><view class="topBlue"></view></view></view> -->
                 <image class="i-card-header-thumb" src="{{(outfitdetail.schoolLogo=='暂无'||outfitdetail.schoolLogo==null)?'../../../static/1.png':outfitdetail.schoolLogo}}"  mode="aspectFit" />
             </view>
 	        <view class="i-card-right">
@@ -32,12 +32,17 @@
   	<view class="viewT" title="基本信息">
   		<view class="viewTC">基本信息</view>
       <view class="line"></view>
-  		<view class="i-input" wx:if="{{outfitdetail.schoolSystem=='暂无'?false:true}}"><view class="i-input-tittle">学制</view><view class="i-input-content">{{ outfitdetail.schoolSystem }}</view></view>
+  		<view class="i-input"  wx:if="{{outfitdetail.schoolSystem=='暂无'?false:true}}">
+			  <view class="i-input-tittle">学制</view>
+				<view>
+				  <view wx:for="{{schoolSystemList}}" class="schoolSystemList">{{ item }}</view>
+				</view>
+			</view>
   		<view class="i-input" wx:if="{{outfitdetail.province=='暂无'&&outfitdetail.town=='暂无'&&outfitdetail.address=='暂无'?false:true}}"><view class="i-input-tittle">地址</view><view class="i-input-content"><text wx:if="{{outfitdetail.province=='暂无'?false:true}}">{{ outfitdetail.province }} </text><text wx:if="{{outfitdetail.town=='暂无'?false:true}}">{{ outfitdetail.town }}</text> <text wx:if="{{outfitdetail.address=='暂无'?false:true}}">{{ outfitdetail.address }}</text></view></view>
-  		<view class="i-input" wx:if="{{oneFee}}"><view class="i-input-tittle">幼儿园学费</view><view class="i-input-content">{{ outfitdetail.oneTuition }}</view></view>
-  		<view class="i-input" wx:if="{{twoFee}}"><view class="i-input-tittle">小学学费</view><view class="i-input-content">{{ outfitdetail.twoTuition }}</view></view>
-  		<view class="i-input" wx:if="{{threeFee}}"><view class="i-input-tittle">初中学费</view><view class="i-input-content">{{ outfitdetail.thirdTuition }}</view></view>
-  		<view class="i-input" wx:if="{{fourFee}}"><view class="i-input-tittle">高中学费</view><view class="i-input-content">{{ outfitdetail.fourTuition }}</view></view>
+  		<view class="i-input" wx:if="{{oneFee}}"><view class="i-input-tittle">幼儿园学费</view><view class="i-input-content">{{ outfitdetail.oneTuition }}元/每学年</view></view>
+  		<view class="i-input" wx:if="{{twoFee}}"><view class="i-input-tittle">小学学费</view><view class="i-input-content">{{ outfitdetail.twoTuition }}元/每学年</view></view>
+  		<view class="i-input" wx:if="{{threeFee}}"><view class="i-input-tittle">初中学费</view><view class="i-input-content">{{ outfitdetail.thirdTuition }}元/每学年</view></view>
+  		<view class="i-input" wx:if="{{fourFee}}"><view class="i-input-tittle">高中学费</view><view class="i-input-content">{{ outfitdetail.fourTuition }}元/每学年</view></view>
   		<view class="i-input" wx:if="{{outfitdetail.website=='暂无'?false:true}}"><view class="i-input-tittle">官网</view><view class="i-input-content">{{ outfitdetail.website }}</view></view>
   		<view class="i-input" wx:if="{{outfitdetail.telephone=='暂无'?false:true}}"><view class="i-input-tittle">电话</view><view class="i-input-content">{{ outfitdetail.telephone }}</view></view>
   		
@@ -45,11 +50,21 @@
 	<view class="viewT" title="课程&学生" wx:if="{{outfitdetail.course=='暂无'&&outfitdetail.interCourseFoundedTime=='暂无'&&outfitdetail.authentication=='暂无'&&outfitdetail.staffNum=='暂无'?false:true}}"> 
 		<view class="viewTC">课程&学生</view>
       <view class="line"></view>
-		<view class="i-input" wx:if="{{outfitdetail.course=='暂无'||outfitdetail.course=='无;'?false:true}}"><view class="i-input-tittle">开设的国际课程</view><view class="i-input-content">{{ outfitdetail.course }}</view></view>
+		<view class="i-input" wx:if="{{outfitdetail.course=='暂无'||outfitdetail.course=='无;'?false:true}}">
+			<view class="i-input-tittle">开设的国际课程</view>
+				<view>
+				  <view wx:for="{{courseList}}" class="schoolSystemList">{{ item }}</view>
+				</view>
+		</view>
 		<view class="i-input" wx:if="{{outfitdetail.interCourseFoundedTime=='暂无'?false:true}}"><view class="i-input-tittle">国际课程认证时间</view><view class="i-input-content">{{ outfitdetail.interCourseFoundedTime }}</view></view>
 		
-		<view class="i-input"  wx:if="{{outfitdetail.authentication=='暂无'||outfitdetail.authentication=='0;'?false:true}}"><view class="i-input-tittle">获得的认证</view><view class="i-input-content">{{ outfitdetail.authentication=='0'||outfitdetail.authentication=='0;'?'暂无':outfitdetail.authentication }}</view></view>
-		<view class="i-input" wx:if="{{outfitdetail.staffNum=='暂无'?false:true}}"><view class="i-input-tittle">在校生总人数（国际部）</view><view class="i-input-content">{{ outfitdetail.staffNum }}</view></view>
+		<view class="i-input"  wx:if="{{outfitdetail.authentication=='暂无'||outfitdetail.authentication=='0;'?false:true}}">
+	 		<view class="i-input-tittle">获得的认证</view>
+			<view>
+			  <view wx:for="{{authenticationList}}" class="schoolSystemList">{{ item }}</view>
+			</view>
+		</view>
+		<view class="i-input" wx:if="{{outfitdetail.students=='暂无'?false:true}}"><view class="i-input-tittle">在校生总人数（国际部）</view><view class="i-input-content">{{ outfitdetail.students }}</view></view>
 	</view>
 	<view class="viewT" title="师资力量" wx:if="{{outfitdetail.teacherNum=='暂无'&&outfitdetail.teacherStuRatio=='暂无'?false:true}}">
 		<view class="viewTC">师资力量</view>

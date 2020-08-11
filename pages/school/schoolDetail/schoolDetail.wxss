@@ -30,7 +30,8 @@
 	align-items:center;
 	line-height:1.4;
 	font-size:14px;
-	overflow:hidden;
+  overflow:hidden;
+  justify-content: space-between;
 }
 .line{
   border-top:3px solid #215089;
@@ -43,6 +44,15 @@
 	color:#495060;
 	min-width:65px;
 	padding-right:10px;
+}
+.schoolSystemList{
+ display: inline-block;
+ padding: 4px;
+ color: #fff;
+ border-radius: 8px;
+ background-color: #1989fa;
+ font-size: 12px;
+ margin-left: 10px;
 }
 .i-input-content{
 	text-align:right;
@@ -209,4 +219,9 @@
 }
 .show{
   display:inline-block;
+}
+
+
+.schoolDetail{
+  padding: 20px 10px;
 }

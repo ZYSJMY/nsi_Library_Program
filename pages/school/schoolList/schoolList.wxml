@@ -30,10 +30,18 @@
               <view class="i-card-right-bottom-label"><view class="label-top">成立时间</view><view class="label-bottom">{{itemName.foundingTime?itemName.foundingTime:'暂无'}}</view></view>
               <view class="i-card-right-bottom-label"><view class="label-top">省份</view><view class="label-bottom">{{itemName.province}}</view></view>
             </view>
+            <view class="i-class i-card-footer">
+            <view>
+              <view style=" display: inline-block;font-size: 14px;">学制:</view>
+              <view wx:for="{{itemName.schoolSystem}}" class="schoolSysteList">{{item}}</view>
+            </view>
+            <view>
+              <view class="schoolSysteList {{itemName.operationState == '停办'?'schoolSystemRed':'schoolSysteGreen'}}">{{itemName.operationState}}</view>
+            </view>
+        </view>
         </view>
         </view>
         
-        <view class="i-class i-card-footer">学制: {{ itemName.schoolSystem}}</view>
     </view>
     <!-- </navigator> -->
   </view>
