@@ -1,16 +1,58 @@
-<!-- 搜索框 -->
-<!--<view bindtap="hideview" wx:if="{{hideviews}}" style="width:100%;height:100%;position:fixed;z-index:9998;top:0;background:rgba(0,0,0,0.5);"></view>-->
 <view class="head" style='height:{{navH}}px;line-height:{{navH}}px'  bindtap="refresh">
   <image  src="../../../static/go.png"></image>
   <text>新学说国际学校四库全书</text>
 </view>
 <scroll-view scroll-y='true' class="item" style="height:{{height}}px" bindscrolltolower='lower'>
-   <!--<view wx:if="{{hideviews}}"  bindtap="hideview" style="position:fixed;z-index:99999;right:25px;top:0px;"><image style="width: 240px; height: 180px;box-shadow: 0 2px 10px 3px rgba(13,17,27,.1);" src="../../../static/guanzhu.png"></image></view>-->
   <view class="main">
     <view class="search-view">
-      <icon class="searchIcon" type="search" size="16"/>
-      <input class='Search_Input_class' placeholder="请输入国际学校或地区" confirm-type='search' type='text' value="{{contentValue}}"  bindconfirm="bindSearchEvent">{{searchKey}}</input>
+      <image class="searchIcon" src="../../../images/search.png"></image>
+      <input class='Search_Input_class' placeholder="搜索" confirm-type='search' type='text' value="{{contentValue}}"  bindconfirm="bindSearchEvent">{{searchKey}}</input>
       <view  wx:if="{{totalstatus}}" class="totalNum">搜索到{{listLength}}条数据</view>
+    </view>
+    <!-- 弹框 -->
+    <view class="search-condition">
+      <!--下拉框  -->
+      <view class="chooseGradeBox {{system != '招生阶段'?'chooseGradeBoxBg':''}}">
+        <view class="list-msg2" bindtap='bindShowMsg'>
+          <view>{{system}}<text class="triangle {{system != '招生阶段'?'triangleBg':''}}"></text></view>
+        </view>
+      </view>
+      <view class="chooseGradeBox {{area != '所在城市'?'chooseGradeBoxBg':''}}">
+        <view class="list-msg2" bindtap='bindShowMsg1'>
+          <view>{{area}}<text class="triangle {{area != '所在城市'?'triangleBg':''}}"></text></view>
+        </view>
+      </view>
+      <view class="chooseGradeBox {{properties != '学校性质'?'chooseGradeBoxBg':''}}">
+        <view class="list-msg2" bindtap='bindShowMsg2'>
+          <view>{{properties}}<text class="triangle {{properties != '学校性质'?'triangleBg':''}}"></text></view>
+        </view>
+      </view>
+    </view>
+    <!-- 招生弹框内容 -->
+    <view class="select_box {{select==false?'hide':'show'}}">
+      <view class="selectList">
+        <view class="select_one" bindtap="resetSystem">重置</view>
+        <view class="select_one" bindtap="mySelect" data-name="幼儿园">幼儿园</view>
+        <view class="select_one" bindtap="mySelect" data-name="小学">小学</view>
+        <view class="select_one" bindtap="mySelect" data-name="初中">初中</view>
+        <view class="select_one" bindtap="mySelect" data-name="高中">高中</view>
+      </view>
+    </view>
+    <!-- 所在城市弹框内容 -->
+    <view class="select_box {{select1==false?'hide':'show'}}">
+      <view class="selectList">
+        <view class="select_one" bindtap="resetArea">重置</view>
+        <view wx:for="{{selectListArea}}" class="select_one" bindtap="mySelect1" data-name="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <!-- 学校性质弹框内容 -->
+    <view class="select_box {{select2==false?'hide':'show'}}">
+        <view class="selectList">
+          <view class="select_one" bindtap="resetProperties">重置</view>
+          <view class="select_one" bindtap="mySelect2" data-name="民办">民办</view>
+          <view class="select_one" bindtap="mySelect2" data-name="公办">公办</view>
+          <view class="select_one" bindtap="mySelect2" data-name="外籍">外籍</view>
+        </view>
     </view>
   </view>
   <view wx:if="{{liststatus}}" class="nothavemore" >没搜索到，换个关键词试试</view>
@@ -23,25 +65,30 @@
             </view>
             <view class="i-card-right">
               <view class="i-card-right-top">
-              <view style="overflow:hidden;height:21px;word-break: break-all;text-overflow: ellipsis;">{{ itemName.schoolName }}</view>
+              <view style="overflow:hidden;height:42rpx;word-break: break-all;text-overflow: ellipsis;">{{ itemName.schoolName }}</view>
           </view>
           <view class="i-card-right-bottom">
-              <view class="i-card-right-bottom-label"><view class="label-top">学校类型</view><view class="label-bottom" style="color:#0084ff">{{itemName.schoolProperties}}</view></view>
-              <view class="i-card-right-bottom-label"><view class="label-top">成立时间</view><view class="label-bottom">{{itemName.foundingTime?itemName.foundingTime:'暂无'}}</view></view>
-              <view class="i-card-right-bottom-label"><view class="label-top">省份</view><view class="label-bottom">{{itemName.province}}</view></view>
+              <view class="i-card-right-bottom-label">
+                <view class="label-bottom">
+                 <image style="width: 32rpx;height: 32rpx;vertical-align: text-top"  src="../../../images/dizhi.png" mode="aspectFit" />
+                {{itemName.province}}</view>
+              </view>
+              <view class="i-card-right-bottom-label">
+                <view class="label-bottom">类型：{{itemName.schoolProperties}}</view>
+              </view>
+              <view class="i-card-right-bottom-label">
+                <view class="label-bottom">成立时间：{{itemName.foundingTime?itemName.foundingTime:'暂无'}}</view>
+              </view>
+              
             </view>
             <view class="i-class i-card-footer">
-            <view>
-              <view style=" display: inline-block;font-size: 14px;">学制:</view>
-              <view wx:for="{{itemName.schoolSystem}}" class="schoolSysteList">{{item}}</view>
-            </view>
-            <view>
-              <view class="schoolSysteList {{itemName.operationState == '停办'?'schoolSystemRed':'schoolSysteGreen'}}">{{itemName.operationState}}</view>
-            </view>
+              <view>
+                <view wx:for="{{itemName.schoolSystem}}" class="schoolSysteList">{{item}}</view>
+              </view>
+              <view class="schoolSyste {{itemName.operationState == '停办'?'schoolSystemRed':'schoolSysteGreen'}}">{{itemName.operationState}}</view>
         </view>
         </view>
         </view>
-        
     </view>
     <!-- </navigator> -->
   </view>

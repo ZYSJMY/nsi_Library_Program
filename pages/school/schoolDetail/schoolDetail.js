@@ -7,13 +7,7 @@ Page({
     // console.log(e)
   },
   data: {
-    showBanner:[
-      // {banner:""},
-      // {banner:''},
-      // {banner:''},
-      // {banner:''},
-      // {banner:''},
-    ],
+    showBanner:[],
     oneFee:false,
     twoFee: false,
     threeFee: false,
@@ -27,6 +21,7 @@ Page({
     inputRemark:"",
     inputGrade:"",
     schoolSystemList:[],
+    studeAbroadCountriesList:[],
     courseList:[],
     authenticationList:[],
     indicatorDots: true,
@@ -157,6 +152,7 @@ Page({
             authenticationList: res.data.data.authentication.split(";").filter(function (s) { return s && s.trim();}),
             showBanner: that.data.showBanner,
         })
+        console.log(that.data.studeAbroadCountriesList,that.data.authenticationList)
         wx.setNavigationBarTitle({
           title: res.data.data.schoolName
         })

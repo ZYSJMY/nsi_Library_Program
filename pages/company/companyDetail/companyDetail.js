@@ -4,12 +4,15 @@ const app = getApp()
 
 Page({
   data: {
+    showBanner:[],
     outfitdetail:'',
     outfitid:'',
   },
   tapName(data){
     console.log(data)
   },
+
+
   lower:function(){
     this.data.pageNum=this.data.pageNum+1
     this.ajaxlist()
@@ -44,11 +47,28 @@ Page({
       },
       success(res) {
         console.log(res)
+        console.log(res.data.data)
         for (var value in res.data.data) {
-          if (res.data.data[value] == 0 || res.data.data[value] == null){
+          if (res.data.data[value] == 0 || res.data.data[value] == '0' || res.data.data[value] == null  ||  res.data.data[value] =="其他"){
             res.data.data[value]='暂无'
           }
         };
+        if(res.data.data.img02 == '暂无'||res.data.data.img02=='0'||res.data.data.img02==null){
+        }else{
+          that.data.showBanner.push(res.data.data.img02)
+        }
+        if(res.data.data.img03 == '暂无'||res.data.data.img03=='0'||res.data.data.img03==null){
+        }else{
+          that.data.showBanner.push(res.data.data.img03)
+        }
+        if(res.data.data.img04 == '暂无'||res.data.data.img04=='0'||res.data.data.img04==null){
+        }else{
+          that.data.showBanner.push(res.data.data.img04)
+        }
+        if(res.data.data.img05 == '暂无'||res.data.data.img05=='0'||res.data.data.img05==null){
+        }else{
+          that.data.showBanner.push(res.data.data.img05)
+        }
         wx.setNavigationBarTitle({
           title: res.data.data.name
         })

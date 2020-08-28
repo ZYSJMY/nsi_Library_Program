@@ -1,60 +1,332 @@
-.i-card{margin:5px 0px;font-size:14px;overflow:hidden;position:relative;}
+.i-card{font-size:28rpx;flex-direction:row;display:flex;background:#fff;border-radius:10rpx;padding: 20rpx 20rpx 10rpx;}
 .i-card-full{margin:0;border-left:none;border-right:none;border-radius:0}
-.i-card-header{display:flex;padding:6px 16px;align-items:center;background:#fff;}
+.i-card-header{display:flex;padding:12rpx 32rpx;align-items:center;background:#fff;}
 .i-card-header-content{flex:1;text-align:left;white-space:nowrap;text-overflow:ellipsis}
-.i-card-header-thumb{display:inline-block;width:64px;height:64px;position:relative;margin-left:auto;margin-right:auto;overflow:hidden;background-size:cover;vertical-align:middle}
-.i-card-header-title{display:inline-block;vertical-align:middle;font-size:14px;color:#1c2438}
-.i-card-header-extra{flex:1;text-align:right;font-size:14px;color:#80848f}
-.i-card-body{position:relative;padding:6px 16px;color:#495060;font-size:14px}
-.i-card-body::before{content:'';position:absolute;top:0;left:0;width:200%;height:200%;transform:scale(.5);transform-origin:0 0;pointer-events:none;box-sizing:border-box;border:0 solid #e9eaec;border-top-width:1px}
-.i-card-footer{position:relative;padding:6px 16px;color:#80848f;font-size:12px;background:#fff;}
-.i-card-right{display:flex;flex-direction:column;width:100%;background:#fff;}
+.i-card-header-thumb{display:inline-block;width:200rpx;height:200rpx;position:relative;margin-left:auto;margin-right:auto;overflow:hidden;background-size:cover;vertical-align:middle;background:#fff;box-shadow: 0 4rpx 20rpx 6rpx rgba(13,17,27,.1);border-top:none;}
+.i-card-header-title{display:inline-block;vertical-align:middle;font-size:28rpx;color:#1c2438}
+.i-card-header-extra{flex:1;text-align:right;font-size:28rpx;color:#80848f}
+.i-card-body{position:relative;padding:12rpx 32rpx;color:#495060;font-size:28rpx}
+.i-card-body::before{content:'';position:absolute;top:0;left:0;width:200%;height:200%;transform:scale(.5);transform-origin:0 0;pointer-events:none;box-sizing:border-box;border:0 solid #e9eaec;border-top-width:2rpx}
+.i-card-footer{position:relative;padding:12rpx 32rpx;color:#80848f;font-size:24rpx;background:#fff;}
+.i-card-right{display:flex;flex-direction:column;width:100%;background:#fff;margin-left: 32rpx;}
 .i-card-right-top,.i-card-right-bottom{display:flex;flex-direction:row;}
-.i-card-right-bottom{justify-content:space-between;margin:10px 20px 5px 20px;}
+.i-card-right-bottom{justify-content:space-around;margin-top:20rpx;}
 .i-card-right-bottom-label{display:flex;justify-content:center;items-align:center;flex-direction:column;text-align:center;}
-.label-top{font-size:14px;color:#999;}
-.label-bottom{font-size:12px;color:#333;margin-top:5px;}
+.label-top{font-size:28rpx;color:#999;}
+.label-bottom{font-size:24rpx;color:#333;margin-top:20rpx;}
 .item{background:#f4f4f4;}
-.i-card-right-top{font-size:16px;text-indent:20px;}
-.myshare{z-index:9999;position:fixed;z-index:999;right:30px;bottom:60px;width:36px;height:36px;background:#fff;border-radius:50%;}
-.myshare2{position:fixed;z-index:1000014;right:30px;bottom:110px;width:36px;height:36px;background:#fff;border-radius:50%;}
-.sharebutton{display:inline-block;width:36px;height:36px;padding:0;margin:0;line-height:30px;color:#999;border-radius:50%;padding:2px;background:#fff;box-shadow: 0 8px 5px 0 rgba(7,17,27,.1);background:#215089;}
-.footer{color:#999;font-size:12px;margin:10px;text-align:center;}
-.textleft{
-padding:4px 20px;
-font-size:14px;color:#999;
-flex:1;
-line-height:1.6;
-min-height:22px;
-height:auto;
-font-size:14px;
-}
+.i-card-right-top{font-size:32rpx;}
+.myshare{position:fixed;z-index:1000014;right:60rpx;bottom:120rpx;width:72rpx;height:72rpx;background:#fff;border-radius:50%;}
+.myshare2{position:fixed;z-index:1000014;right:60rpx;bottom:220rpx;width:72rpx;height:72rpx;background:#fff;border-radius:50%;}
+.sharebutton{display:inline-block;width:72rpx;height:72rpx;margin:0;line-height:60rpx;color:#999;border-radius:50%;padding:4rpx;background:#fff;box-shadow: 0 16rpx 10rpx 0 rgba(7,17,27,.1);background:#215089;}
+.footer{color:#999;font-size:24rpx;margin:40rpx 0 20rpx;text-align:center;}
 .i-input{
+  background:#f6f7f7;
 	display:flex;
-	padding:7px 0px;
+	padding:20rpx 20rpx 0;
 	color:#495060;
-	margin:0 20px;
+	margin:0 20rpx;
 	position:relative;
-	display:flex;
-	background:#fff;
 	align-items:center;
 	line-height:1.4;
-	font-size:14px;
-	overflow:hidden;
-	border-bottom:1px solid #f6f7f7;
+	font-size:28rpx;
+  overflow:hidden;
+  justify-content: space-between;
+}
+.line{
+  border-top:3rpx solid #215089;
+  margin:0 20rpx;
+}
+.i-input:last-of-type{
+  padding-bottom:20rpx;
 }
 .i-input-tittle{
 	color:#495060;
-	min-width:65px;
-	padding-right:10px;
+	min-width:130rpx;
+	padding-right:20rpx;
+}
+.schoolSystemList{
+  display: inline-block;
+  padding: 0 4rpx;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+ }
+.schoolDesc-course .schoolSystemList:nth-child(1){
+  background-color: rgba(97, 202, 85, 1);
+}
+.schoolDesc-course .schoolSystemList:nth-child(2){
+  background-color: rgba(239, 115, 120, 1);
+}
+.schoolDesc-course .schoolSystemList:nth-child(3){
+  background-color: rgba(244, 164, 115, 1);
+}
+.schoolDesc-course .schoolSystemList:nth-child(4){
+  background-color: rgba(79, 190, 238, 1);
+}
+.schoolSystemList-course{
+  display: inline-block;
+  padding: 0 4rpx;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  border:2rpx solid rgba(79, 190, 238, 1);
+ }
+.schoolDesc-course .schoolSystemList-course:nth-child(1){
+  color:rgba(79, 190, 238, 1);
+  border:2rpx solid rgba(79, 190, 238, 1);
+}
+.schoolDesc-course .schoolSystemList-course:nth-child(2){
+  color:rgba(244, 164, 115, 1);
+  border:2rpx solid rgba(244, 164, 115, 1);
+}
+.schoolDesc-course .schoolSystemList-course:nth-child(3){
+  color:rgba(239, 115, 120, 1);
+  border:2rpx solid rgba(239, 115, 120, 1);
+}
+.schoolDesc-course .schoolSystemList-course:nth-child(4){
+  color:rgba(97, 202, 85, 1);
+  border:2rpx solid rgba(97, 202, 85, 1);
 }
 .i-input-content{
 	text-align:right;
 	flex:1;
 	line-height:1.6;
-	padding:4px 0;
-	min-height:22px;
+	padding:8rpx 8rpx 8rpx 0;
+	min-height:44rpx;
 	height:auto;
-	font-size:14px;
+	font-size:28rpx;
 	white-space: normal;
+}
+.outTopBlue{
+	position:absolute;
+	top:0;
+	right:-28rpx;
+	height:24rpx;
+	width:28rpx;
+	background:#fff;
+	border-radius:0rpx 24rpx 0 0;
+}
+.topBlue{
+	height:24rpx;
+	width:28rpx;
+	background:#3e7ac3;
+	border-radius:28rpx 24rpx 0 0;
+}
+.topwhite{
+	background:#fff;
+	width:100%;
+	height:28rpx;
+	border-radius:28rpx 0rpx 0 0;
+}
+.i-card-left-top{
+	position:relative;
+	display:flex;
+	z-index:999;
+}
+.viewT{
+	background:#fff;
+}
+.viewTC{
+	color:#e1e1e1;
+	background:#215089;
+	font-size:28rpx;
+	margin:20rpx 20rpx 0;
+	border-radius:10rpx 10rpx 0 0;
+  width:80rpx;
+  text-align: center;
+  padding:4rpx 10rpx 0;
+}
+.visitSchool{
+  margin:0 20rpx;
+  padding:0 0rpx 20rpx 20rpx;
+}
+.visitSchool .chooseItem{
+  display: flex;
+}
+.visitSchool input{
+  margin: 20rpx 20rpx 0 0;
+  display: inline-block;
+  background:#fff;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  padding:0 10rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  width: 100%;
+  box-shadow: 0rpx 4rpx 20rpx rgb(226, 226, 226);
+}
+.chooseGradeBox{
+  position: relative;
+  width: 100%;
+  margin: 20rpx 20rpx 0 0;
+  display: inline-block;
+  background:#fff;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  padding:0 10rpx;
+  height:60rpx;
+  line-height: 60rpx;
+  box-shadow: 0 4rpx 20rpx rgb(226, 226, 226);
+}
+.list-msg2{
+  width:90%;
+  background: #fff;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  height:60rpx;
+  line-height:60rpx;
+}
+.lightColor{
+  color:#777;
+}
+.weightColor{
+  color:#1c2438;
+}
+.down{
+  width: 48rpx;
+  height: 48rpx;
+  position: absolute;
+  top: 8rpx;
+  right: 4rpx;
+}
+.select_box{
+  position: absolute;
+  top: 20rpx;
+  z-index: 9;
+  width: 100%;
+}
+.selectList{
+  width:90%;
+  background: #f1f1f1;
+  color:#777;
+  padding: 10rpx;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  height: 240rpx;
+  overflow: scroll;
+
+}
+.triangle{
+  width: 0;
+  height: 0;
+  border-width: 24rpx;
+  border-style: solid;
+  border-color: transparent transparent #f1f1f1 transparent;
+  position: relative;
+  top: -6rpx;
+  left: 60rpx;
+}
+.selectList .select_one{
+  padding:10rpx;
+}
+.visitSchool textarea{
+  margin:20rpx 0 60rpx;
+  background:#fff;
+  height:120rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  padding:10rpx;
+  width:94%;
+  box-shadow: 0 4rpx 20rpx rgba(226, 226, 226);
+}
+.canpoint{
+  pointer-events: auto;
+}
+.cannotpoint{
+  pointer-events: none;
+}
+.remark{
+  font-size: 24rpx;
+}
+.submit{
+  width: 34%;
+  height: 68rpx;
+  line-height: 68rpx;
+  color: #fff;
+  font-size: 32rpx;
+	background:#215089 !important;
+}
+.scroll-view_H{
+  white-space: nowrap;
+}
+.scroll-view-item_H image{
+  width: 100%;
+  height:400rpx;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  width: 100%;
+  height: 400rpx;
+}
+.hide{
+  display:none;
+}
+.show{
+  display:inline-block;
+}
+
+
+.schoolDetail{
+  padding: 30rpx 20rpx 0;
+}
+/* 头部 */
+.container{
+  border-radius: 8rpx;
+  margin-bottom: 32rpx;
+  padding: 12rpx 0;
+  box-shadow: 0 10rpx 20rpx rgba(89, 89, 89, 0.349019607843137);
+}
+.container .container-text{
+  display:flex;
+  margin-left:20rpx;
+  font-size:24rpx;
+  color:#8c8c8c;
+  margin-top:12rpx
+}
+.container .container-text .container-text-region{
+  width: 100%;
+}
+.container .container-text .container-text-website{
+  color:#4398Fb;
+}
+/* 学校简介 */
+.schoolDesc{
+  padding: 20rpx;
+  border-radius: 8rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 10rpx 20rpx rgba(213, 213, 213);
+}
+.schoolDesc .schoolDesc-top{
+  font-size: 44rpx;
+  color: #333333;
+  font-weight: 700;
+  margin-bottom: 12rpx;
+}
+.schoolDesc .schoolDesc-text{
+  text-indent: 2em;
+  font-size: 26rpx;
+  color: #828282;
+}
+.schoolDesc .schoolDesc-text image{
+  height: 140rpx;
+  float: right;
+  width: 150rpx;
+  margin-left:12rpx;
+}
+/* 课程 */
+.schoolDesc .schoolDesc-course{
+  font-size: 26rpx;
+  color: #828282;
+  margin-bottom: 12rpx;
+}
+.left {
+  float: left;
+  width: 160rpx;
+  height: 100%;
+}
+text{
+  color: #333333;
 }

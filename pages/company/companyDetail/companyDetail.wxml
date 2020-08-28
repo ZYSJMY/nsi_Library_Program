@@ -1,46 +1,84 @@
-<view>
+<view class="schoolDetail">
+  <!-- 头部 -->
+  <view class="container">
+		<view class="page-body" style="width:100%"  class=" {{showBanner == ''?'hide':''}}">
+			<view class="page-section page-section-spacing swiper">
+				<swiper indicator-dots="true" indicator-color="#fff"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+					<block wx:for="{{showBanner}}" wx:key="*this" >
+						<swiper-item>
+								<image style="width: 100%;height: 160px;border-radius: 4px;" src="{{item}}?x-oss-process=image/crop,w_800,h_450,g_center"/>
+						</swiper-item>
+					</block>
+				</swiper>
+			</view>
+		</view>
+		<view style="margin:12rpx 0 0 20rpx">{{outfitdetail.name}}</view>
+		<view class="container-text">
+			<view class="container-text-region" wx:if="{{outfitdetail.areas=='暂无'&&outfitdetail.areas02=='暂无'&&outfitdetail.areas03=='暂无'?false:true}}">
+				<text>地区：</text>
+				<text wx:if="{{outfitdetail.areas=='暂无'?false:true}}">{{ outfitdetail.areas }}</text>
+				<text wx:if="{{outfitdetail.areas02=='暂无'?false:true}}">{{ outfitdetail.areas02 }}</text>
+				<text wx:if="{{outfitdetail.areas03=='暂无'?false:true}}">{{ outfitdetail.areas03 }}</text>
+			</view>
+		</view>
+		<view class="container-text">
+				<text wx:if="{{outfitdetail.type=='暂无'?false:true}}">机构类型：{{outfitdetail.type}}</text>
+		</view>
+		<view class="container-text">
+				<text wx:if="{{outfitdetail.foundTime=='暂无'?false:true}}">成立时间：{{ outfitdetail.foundTime }}</text>
+		</view>
+		<view class="container-text">
+			  <view class="container-text-region container-text-website" wx:if="{{outfitdetail.webSite=='暂无'?false:true}}">
+				  <text style="color: #4398Fb;">官网：{{ outfitdetail.webSite }}</text>
+				</view>
+		</view>
+	</view>
+	<!-- 简介 -->
+	<view class="schoolDesc" wx:if="{{outfitdetail.introduction == '暂无'?false:true}}">
+		<view class="schoolDesc-top">详细简介</view>
+		<view class="schoolDesc-text">
+			<image src="{{(outfitdetail.institutionLogo=='暂无'||outfitdetail.institutionLogo==null)?'../../../static/1.png':outfitdetail.institutionLogo}}"  mode="aspectFit" />
+			{{ outfitdetail.introduction}}
+    </view>
+	</view>
+  <!-- 基本信息 -->
+	<view class="schoolDesc">
+		<view class="schoolDesc-top">基本信息</view>
+		<view class="schoolDesc-course" style="display: flex;"  wx:if="{{outfitdetail.service == '暂无'?false:true}}">
+				<view class="left">服务简介：</view>
+			  <text style="width: 90%;">{{ outfitdetail.service }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;"  wx:if="{{outfitdetail.label == '暂无'?false:true}}">
+				<view class="left">公司业务：</view>
+			  <text style="width: 90%;">{{ outfitdetail.label }}</text>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.contactName=='暂无'?false:true}}">
+		    <view>个人姓名：<text>{{ outfitdetail.contactName }}</text></view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.contactPosition == '暂无'?false:true}}">
+		   	<view>个人职位：<text class="i-input-content">{{ outfitdetail.contactPosition }}</text> </view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.contactPhone == '暂无'?false:true}}">
+			  <view>联系电话：<text class="i-input-content">{{ outfitdetail.contactPhone }}</text> </view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.contactMail == '暂无'?false:true}}">
+			  <view>联系邮箱：<text class="i-input-content">{{ outfitdetail.contactMail }}</text> </view>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;"  wx:if="{{outfitdetail.investment == '暂无'?false:true}}">
+				<view class="left">投资信息：</view>
+			  <text style="width: 90%;">{{ outfitdetail.investment }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;"  wx:if="{{outfitdetail.servedSchool == '暂无'?false:true}}">
+				<view class="left">过往服务学校：</view>
+			  <text style="width: 90%;">{{ outfitdetail.servedSchool }}</text>
+		</view>
+	</view>
+  <!--备注 -->
+	<view class="schoolDesc" wx:if="{{outfitdetail.introduction == '暂无'?false:true}}">
+			<view class="schoolDesc-top">备注</view>
+			<text class="schoolDesc-course">{{ outfitdetail.introduction }}</text>
+	</view>
 	<view class="myshare"><button class="sharebutton" open-type="share"><i-icon type="send" size="24" color="#fff" /></button></view>
 	<view class="myshare2" bindtap="clickMe"><button class="sharebutton"><i-icon type="homepage" size="24" color="#fff" /></button></view>
-	<view class="i-card">
-	    <view class="i-card-header" style="flex-direction:row;">
-	        <view>
-	            <image class="i-card-header-thumb" src="{{ (outfitdetail.institutionLogo=='0'||outfitdetail.institutionLogo==null||outfitdetail.institutionLogo=='暂无')?'../../../static/1.png':outfitdetail.institutionLogo }}" mode="aspectFit" />
-	        </view>
-	        <view class="i-card-right">
-		        <view class="i-card-right-top">
-			    	<view>{{ outfitdetail.name }}</view>
-				</view>
-				<view class="i-card-right-bottom">
-			    	<view class="i-card-right-bottom-label"><view class="label-top">机构类型</view><view class="label-bottom" style="color:# 0084ff">{{outfitdetail.type}}</view></view>
-			    	<view class="i-card-right-bottom-label"><view class="label-top">成立时间</view><view class="label-bottom">{{outfitdetail.foundTime==null||outfitdetail.foundTime==0?'暂无':outfitdetail.foundTime}}</view></view>
-			    	<view class="i-card-right-bottom-label"><view class="label-top">省份</view><view class="label-bottom">{{outfitdetail.areas}}</view></view>
-			    </view>
-			</view>
-	    </view>
-	</view>
-  	<i-panel title="基本信息">
-  		<view class="i-input"><view class="i-input-tittle">服务简介</view><view class="i-input-content">{{ outfitdetail.service }}</view></view>
-  		<view class="i-input"><view class="i-input-tittle">官网</view><view class="i-input-content">{{ outfitdetail.webSite }}</view></view>
-  		<view class="i-input"><view class="i-input-tittle">地址</view><view class="i-input-content">{{ outfitdetail.areas }} {{outfitdetail.areas02}}{{outfitdetail.areas03}}</view></view>
-  		
-	</i-panel>
-	<i-panel title="联系方式">
-		<view class="i-input"><view class="i-input-tittle">个人姓名</view><view class="i-input-content">{{ outfitdetail.contactName }}</view></view>
-		<view class="i-input"><view class="i-input-tittle">个人职位</view><view class="i-input-content">{{ outfitdetail.contactPosition }}</view></view>
-		<view class="i-input"><view class="i-input-tittle">联系电话</view><view class="i-input-content">{{ outfitdetail.contactPhone }}</view></view>
-		<view class="i-input"><view class="i-input-tittle">联系邮箱</view><view class="i-input-content">{{ outfitdetail.contactMail }}</view></view>
-	</i-panel>
-	<i-panel title="其他">
-		<view class="i-input"><view class="i-input-tittle">投资信息</view><view class="i-input-content">{{ outfitdetail.investment }}</view></view>
-		<view class="i-input"><view class="i-input-tittle">过往服务学校</view><view class="i-input-content">{{ outfitdetail.servedSchool }}</view></view>
-	    
-	</i-panel>
-	<i-panel title="详细介绍">
-		<view class="textleft">{{ outfitdetail.introduction }}</view>
-	    
-	</i-panel>
-	<i-panel title="备注">
-		<view class="textleft">{{ outfitdetail.introduction }}</view>
-	</i-panel>
 	<view class="footer">查看更多请访问在线四库全书:data.xinxueshuo.cn <navigator style="display:inline;color:#4b92ea;" url="/pages/dashboard/errmsg/errmsg" hover-class="navigator-hover">报告错误</navigator></view>
 </view>

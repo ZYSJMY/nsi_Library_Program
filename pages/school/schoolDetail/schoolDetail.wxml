@@ -1,103 +1,199 @@
-<view class="schoolDetail">
-  <view class=" {{showBanner == ''?'hide':'container'}}" style="padding:0" >
-		<view class="page-body" style="width:100%">
+<view class="schoolDetail" style="{{outfitdetail.operationState == '停办'?'filter: grayscale(100%)':''}}">
+  <!-- 头部 -->
+  <view class="container">
+		<view class="page-body" style="width:100%"  class=" {{showBanner == ''?'hide':''}}">
 			<view class="page-section page-section-spacing swiper">
-				<swiper  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+				<swiper indicator-dots="true" indicator-color="#fff"  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
 					<block wx:for="{{showBanner}}" wx:key="*this" >
 						<swiper-item>
-								<image style="width: 100%;height: 150px;" src="{{item}}?x-oss-process=image/crop,w_800,h_450,g_center"/>
+								<image style="width: 100%;height: 160px;border-radius: 4px;" src="{{item}}?x-oss-process=image/crop,w_800,h_450,g_center"/>
 						</swiper-item>
 					</block>
 				</swiper>
 			</view>
 		</view>
-	</view>
-	<view class="myshare"><button class="sharebutton" open-type="share"><i-icon type="send" size="24" color="#fff" /></button></view>
-	<view class="myshare2" bindtap="clickMe"><button class="sharebutton"><i-icon type="homepage" size="24" color="#fff" /></button></view>
-	<view class="i-card">
-	         <view class="i-card-left">
-                <image class="i-card-header-thumb" src="{{(outfitdetail.schoolLogo=='暂无'||outfitdetail.schoolLogo==null)?'../../../static/1.png':outfitdetail.schoolLogo}}"  mode="aspectFit" />
-            </view>
-	        <view class="i-card-right">
-		        <view class="i-card-right-top">
-			    	<view>{{ outfitdetail.schoolName }}</view>
-				</view>
-				<view class="i-card-right-bottom">
-			    	 <view class="i-card-right-bottom-label"><view class="label-top">学校类型</view><view class="label-bottom" style="color:#0084ff">{{outfitdetail.schoolProperties}}</view></view>
-		              <view class="i-card-right-bottom-label"><view class="label-top">成立时间</view><view class="label-bottom">{{outfitdetail.foundingTime?outfitdetail.foundingTime:'暂无'}}</view></view>
-		              <view class="i-card-right-bottom-label"><view class="label-top">省份</view><view class="label-bottom">{{outfitdetail.province}}</view></view>
-			    </view>
-			</view>
-	</view>
-  	<view class="viewT" title="基本信息">
-  		<view class="viewTC">基本信息</view>
-      <view class="line"></view>
-  		<view class="i-input"  wx:if="{{outfitdetail.schoolSystem=='暂无'?false:true}}">
-			  <view class="i-input-tittle">学制</view>
-				<view>
-				  <view wx:for="{{schoolSystemList}}" class="schoolSystemList">{{ item }}</view>
-				</view>
-			</view>
-  		<view class="i-input" wx:if="{{outfitdetail.province=='暂无'&&outfitdetail.town=='暂无'&&outfitdetail.address=='暂无'?false:true}}"><view class="i-input-tittle">地址</view><view class="i-input-content"><text wx:if="{{outfitdetail.province=='暂无'?false:true}}">{{ outfitdetail.province }} </text><text wx:if="{{outfitdetail.town=='暂无'?false:true}}">{{ outfitdetail.town }}</text> <text wx:if="{{outfitdetail.address=='暂无'?false:true}}">{{ outfitdetail.address }}</text></view></view>
-  		<view class="i-input" wx:if="{{oneFee}}"><view class="i-input-tittle">幼儿园学费</view><view class="i-input-content">{{ outfitdetail.oneTuition }}元/每学年</view></view>
-  		<view class="i-input" wx:if="{{twoFee}}"><view class="i-input-tittle">小学学费</view><view class="i-input-content">{{ outfitdetail.twoTuition }}元/每学年</view></view>
-  		<view class="i-input" wx:if="{{threeFee}}"><view class="i-input-tittle">初中学费</view><view class="i-input-content">{{ outfitdetail.thirdTuition }}元/每学年</view></view>
-  		<view class="i-input" wx:if="{{fourFee}}"><view class="i-input-tittle">高中学费</view><view class="i-input-content">{{ outfitdetail.fourTuition }}元/每学年</view></view>
-  		<view class="i-input" wx:if="{{outfitdetail.website=='暂无'?false:true}}"><view class="i-input-tittle">官网</view><view class="i-input-content">{{ outfitdetail.website }}</view></view>
-  		<view class="i-input" wx:if="{{outfitdetail.telephone=='暂无'?false:true}}"><view class="i-input-tittle">电话</view><view class="i-input-content">{{ outfitdetail.telephone }}</view></view>
-  		
-	</view>
-	<view class="viewT" title="课程&学生" wx:if="{{outfitdetail.course=='暂无'&&outfitdetail.interCourseFoundedTime=='暂无'&&outfitdetail.authentication=='暂无'&&outfitdetail.staffNum=='暂无'?false:true}}"> 
-		<view class="viewTC">课程&学生</view>
-      <view class="line"></view>
-		<view class="i-input" wx:if="{{outfitdetail.course=='暂无'||outfitdetail.course=='无;'?false:true}}">
-			<view class="i-input-tittle">开设的国际课程</view>
-				<view>
-				  <view wx:for="{{courseList}}" class="schoolSystemList">{{ item }}</view>
-				</view>
+		<view style="margin:0 20rpx;display: flex;justify-content: space-between;padding-top:12rpx">
+		   <text>{{outfitdetail.schoolName}}</text>
+			 <text class="schoolSysteGreen">{{outfitdetail.operationState}}</text>
 		</view>
-		<view class="i-input" wx:if="{{outfitdetail.interCourseFoundedTime=='暂无'?false:true}}"><view class="i-input-tittle">国际课程认证时间</view><view class="i-input-content">{{ outfitdetail.interCourseFoundedTime }}</view></view>
-		
-		<view class="i-input"  wx:if="{{outfitdetail.authentication=='暂无'||outfitdetail.authentication=='0;'?false:true}}">
-	 		<view class="i-input-tittle">获得的认证</view>
-			<view>
-			  <view wx:for="{{authenticationList}}" class="schoolSystemList">{{ item }}</view>
+		<view class="container-text">
+			<view class="container-text-region" wx:if="{{outfitdetail.province=='暂无'&&outfitdetail.town=='暂无'&&outfitdetail.address=='暂无'?false:true}}">
+				<text>地区：</text>
+				<text wx:if="{{outfitdetail.province=='暂无'?false:true}}">{{ outfitdetail.province }}</text>
+				<text wx:if="{{outfitdetail.town=='暂无'?false:true}}">{{ outfitdetail.town }}</text>
+				<text wx:if="{{outfitdetail.address=='暂无'?false:true}}">{{ outfitdetail.address }}</text>
 			</view>
 		</view>
-		<view class="i-input" wx:if="{{outfitdetail.students=='暂无'?false:true}}"><view class="i-input-tittle">在校生总人数（国际部）</view><view class="i-input-content">{{ outfitdetail.students }}</view></view>
+		<view class="container-text" style="display: flex;justify-content: space-between;margin-right: 40rpx;" wx:if="{{outfitdetail.foundingTime=='暂无'?false:true}}">
+				<text>成立时间：{{ outfitdetail.foundingTime }}</text>
+				<text>性质：{{outfitdetail.schoolProperties}}</text>
+		</view>
+		<view class="container-text">
+			  <view class="container-text-region container-text-website" wx:if="{{outfitdetail.website=='暂无'?false:true}}">
+				  <text style="color: #4398Fb;">官网：{{ outfitdetail.website }}</text>
+				</view>
+		</view>
+		<view class="container-text">
+				<text wx:if="{{outfitdetail.telephone=='暂无'?false:true}}">电话：{{ outfitdetail.telephone }}</text>
+		</view>
 	</view>
-	<view class="viewT" title="师资力量" wx:if="{{outfitdetail.teacherNum=='暂无'&&outfitdetail.teacherStuRatio=='暂无'?false:true}}">
-		<view class="viewTC">师资力量</view>
-      <view class="line"></view>
-		<view class="i-input" wx:if="{{outfitdetail.teacherNum=='暂无'?false:true}}"><view class="i-input-tittle">总教师数量</view><view class="i-input-content">{{ outfitdetail.teacherNum }}</view></view>
-		<view class="i-input" wx:if="{{outfitdetail.teacherStuRatio=='暂无'?false:true}}"><view class="i-input-tittle">师生比</view><view class="i-input-content">{{ outfitdetail.teacherStuRatio }}</view></view>
-	</view>
-	<view class="viewT" title="基建"  wx:if="{{outfitdetail.studentCapacity=='暂无'&&outfitdetail.coveredArea=='暂无'&&outfitdetail.builtArea=='暂无'&&outfitdetail.hardware=='暂无'?false:true}}">
-		<view class="viewTC">基建</view>
-      <view class="line"></view>
-    <view class="i-input" wx:if="{{outfitdetail.studentCapacity=='暂无'?false:true}}"><view class="i-input-tittle">学生总容量（国际部）</view><view class="i-input-content">{{ outfitdetail.studentCapacity }}</view></view>
-		<view class="i-input"  wx:if="{{outfitdetail.coveredArea=='暂无'?false:true}}"><view class="i-input-tittle">占地面积(亩)</view><view class="i-input-content">{{ outfitdetail.coveredArea }}</view></view>
-		<view class="i-input"  wx:if="{{outfitdetail.builtArea=='暂无'?false:true}}"><view class="i-input-tittle">建筑面积（平方米）</view><view class="i-input-content">{{ outfitdetail.builtArea }}</view></view>
-		<view class="i-input" wx:if="{{outfitdetail.hardware=='暂无'?false:true}}" ><view class="i-input-tittle">硬件设施</view><view class="i-input-content" style="text-align:left">{{ outfitdetail.hardware }}</view></view>
-	</view>
-	<view class="viewT" title="学校概述" wx:if="{{outfitdetail.schoolDesc == '暂无'?false:true}}">
-		<view class="viewTC">学校概述</view>
-    <view class="line"></view>
-		<view class="i-input">
-      <view class="i-input-content" style="text-align:left;">{{ outfitdetail.schoolDesc}}</view>
+	<!-- 学校简介 -->
+	<view class="schoolDesc" wx:if="{{outfitdetail.schoolDesc == '暂无'?false:true}}">
+		<view class="schoolDesc-top">
+		   <image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="../../../images/jianjie.png"></image>
+			 <text>学校简介</text>
+		</view>
+		<view class="schoolDesc-text">
+			<image src="{{(outfitdetail.schoolLogo=='暂无'||outfitdetail.schoolLogo==null)?'../../../static/1.png':outfitdetail.schoolLogo}}"  mode="aspectFit" />
+			{{ outfitdetail.schoolDesc}}
     </view>
 	</view>
-	<view class="viewT" title="备注" wx:if="{{outfitdetail.remark == '暂无'?false:true}}">
-		<view class="viewTC">备注</view>
-    <view class="line"></view>
-		<view class="i-input"><view style="text-align:left;" class="i-input-content">{{ outfitdetail.remark }}</view></view>
+  <!-- 基本信息 -->
+	<view class="schoolDesc">
+		<view class="schoolDesc-top">
+		   <image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="../../../images/kecheng.png"></image>
+			 <text>课程&学费</text>
+		</view>
+		<view class="schoolDesc-course"  wx:if="{{outfitdetail.schoolSystem=='暂无'?false:true}}">
+			  <view>学制：<text wx:for="{{schoolSystemList}}" class="schoolSystemList">{{ item }}</text></view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{oneFee}}">
+		 <view>幼儿园学费：<text>{{ outfitdetail.oneTuition }}元/每学年</text></view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{twoFee}}">
+		 <view>小学学费：<text>{{ outfitdetail.twoTuition }}元/每学年</text></view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{threeFee}}">
+		   <view>初中学费：<text>{{ outfitdetail.thirdTuition }}元/每学年</text></view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{fourFee}}">
+		 <view>高中学费： <text>{{ outfitdetail.fourTuition }}元/每学年</text></view>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;" wx:if="{{outfitdetail.course=='暂无'||outfitdetail.course=='无;'?false:true}}">
+			<view class="left">国际课程：</view>
+			<view style="width: 90%;">
+			  <text wx:for="{{courseList}}" class="schoolSystemList-course">{{item}}</text>
+			</view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.interCourseFoundedTime=='暂无'?false:true}}">
+		 <view>国际课程认证时间：<text>{{ outfitdetail.interCourseFoundedTime }}</text></view>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;"  wx:if="{{authenticationList=='无'||authenticationList=='0'?false:true}}">
+			<view class="left">获得认证：</view>
+			<view style="width: 90%;">
+			  <text wx:for="{{authenticationList}}" class="schoolSystemList-course">{{item}}</text>
+			</view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.teachingForm == '暂无'?false:true}}">
+				<view class="left">授课形式：</view>
+			  <text style="width: 90%;">{{ outfitdetail.teachingForm }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;" wx:if="{{outfitdetail.courseSystem == '暂无'?false:true}}">
+				<view class="left">课程体系：</view>
+			  <text style="width: 90%;">{{ outfitdetail.courseSystem }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;"  wx:if="{{outfitdetail.schoolCharacteristics == '暂无'?false:true}}">
+				<view class="left">办学特色：</view>
+			  <text style="width: 90%;">{{ outfitdetail.schoolCharacteristics }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;"  wx:if="{{outfitdetail.schoolManagement == '暂无'?false:true}}">
+				<view class="left">办学理念：</view>
+			  <text style="width: 90%;">{{ outfitdetail.schoolManagement }}</text>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.filingFee == '暂无'?false:true}}">
+			  <view>申请费：<text class="i-input-content">{{ outfitdetail.filingFee }}</text> </view>
+		</view>
 	</view>
-  <view class="viewT" title="申请访校">
-		<view class="viewTC">申请访校</view>
-    <view class="line"></view>
+  <!-- 师资力量 -->
+	<view class="schoolDesc">
+		<view class="schoolDesc-top">
+		  <image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="../../../images/shizi.png"></image>
+			 <text>学生&教师</text>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.teacherNum=='暂无'?false:true}}">
+			<view class="schoolDesc-course">总教师数量：<text>{{ outfitdetail.teacherNum }}人</text></view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.foreignTeacherNum == '暂无'?false:true}}">
+		   	<view>外籍教师数量：<text class="i-input-content">{{ outfitdetail.foreignTeacherNum }}人</text> </view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.teacherStuRatio=='暂无'?false:true}}">
+			<view>师生比：<text class="i-input-content">{{ outfitdetail.teacherStuRatio }}</text> </view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.classSize == '暂无'?false:true}}">
+			<view>班级规模：<text class="i-input-content">{{ outfitdetail.classSize }}人</text> </view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.nationalityOfStudents == '暂无'?false:true}}">
+			<view>学生国籍数：<text class="i-input-content">{{ outfitdetail.nationalityOfStudents }}人</text> </view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.students=='暂无'?false:true}}">
+		  <view>在校生总人数（国际部）：<text class="i-input-content">{{ outfitdetail.students }}人</text></view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.studentCapacity == '暂无'?false:true}}">
+		   	<view>学生容量：<text class="i-input-content">{{ outfitdetail.studentCapacity }}人</text> </view>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.graduatedStuNum == '暂无'?false:true}}">
+		   	<view>毕业班人数：<text class="i-input-content">{{ outfitdetail.graduatedStuNum }}人</text> </view>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;"  wx:if="{{outfitdetail.prospects == '暂无'?false:true}}">
+				<view class="left">招生对象：</view>
+			  <text style="width: 90%;">{{ outfitdetail.prospects }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;" wx:if="{{outfitdetail.studeAbroadCountries == '暂无'?false:true}}">
+				<view class="left">留学国家：</view>
+			  <text style="width: 90%;">{{ outfitdetail.studeAbroadCountries }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;" wx:if="{{outfitdetail.studentEnrollment == '暂无'?false:true}}">
+				<view class="left">招生信息：</view>
+			  <text style="width: 90%;">{{ outfitdetail.studentEnrollment }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;" wx:if="{{outfitdetail.accommodation == '暂无'?false:true}}">
+				<view class="left">住宿情况：</view>
+			  <text style="width: 90%;">{{ outfitdetail.accommodation }}</text>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;" wx:if="{{outfitdetail.stuDominantNationality == '暂无'?false:true}}">
+				<view class="left">学生国籍：</view>
+			  <text style="width: 90%;">{{ outfitdetail.stuDominantNationality }}</text>
+		</view>
+		<view class="schoolDesc-course" wx:if="{{outfitdetail.staffNum == '暂无'?false:true}}">
+		   	<view>员工数量：<text class="i-input-content">{{ outfitdetail.staffNum }}人</text> </view>
+		</view>
+  </view>
+	<!--学校基建 -->
+	<view class="schoolDesc" wx:if="{{outfitdetail.coveredArea=='暂无'&&outfitdetail.builtArea=='暂无'&&outfitdetail.hardware=='暂无'?false:true}}">
+		<view class="schoolDesc-top">
+		  <image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="../../../images/jijian.png"></image>
+			<text>学校基建</text>
+		</view>
+		<view class="schoolDesc-course"  wx:if="{{outfitdetail.coveredArea=='暂无'?false:true}}">
+			<view>占地面积(亩)：<text class="schoolDesc-course-content">{{ outfitdetail.coveredArea }}</text></view>
+		</view>
+		<view class="schoolDesc-course"  wx:if="{{outfitdetail.builtArea=='暂无'?false:true}}">
+			<view>建筑面积（平方米）：<text class="schoolDesc-course-content">{{ outfitdetail.builtArea }}</text></view>
+		</view>
+		<view class="schoolDesc-course" style="display: flex;" wx:if="{{outfitdetail.hardware=='暂无'?false:true}}">
+			<view class="left">硬件设施：</view>
+			<text style="width: 90%;">{{ outfitdetail.hardware }}</text>
+		</view>
+	</view>
+  <!--备注 -->
+	<view class="schoolDesc" wx:if="{{outfitdetail.remark == '暂无'?false:true}}">
+			<view class="schoolDesc-top">
+				<image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="../../../images/beizu.png"></image>
+				<text>备注</text>
+			</view>
+			<text class="schoolDesc-course">{{ outfitdetail.remark }}</text>
+	</view>
+	<!--  申请访校 -->
+  <view class="schoolDesc">
+		<view class="schoolDesc-top">
+		 <image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="../../../images/beizu.png"></image>
+		 <text>申请访校</text>
+		</view>
 		<view class="visitSchool">
       <view class="chooseItem">
         <input placeholder="学生姓名" bindinput='inputName'></input>
+      </view>
+			<view class="chooseItem">
         <!--下拉框  -->
         <view class="chooseGradeBox">
           <view class="list-msg2 {{tihuoWay=='在读年级'?'lightColor':'weightColor'}}" bindtap='bindShowMsg'>
@@ -111,11 +207,16 @@
               </view>
           </view>
         </view>
+      </view>
+			<view class="chooseItem">
         <input placeholder="手机号码" bindinput='inputPhone'></input>
       </view>
       <textarea placeholder="备注" placeholder-style="font-size:12px;" placeholder-class="remark" bindblur="inputRemark" class="{{select==false?'canpoint':'cannotpoint'}}"/>
       <button type="primary" class="submit" bindtap="submit">立即提交</button>
     </view>
 	</view>
+	<view class="myshare"><button class="sharebutton" open-type="share"><i-icon type="send" size="24" color="#fff" /></button></view>
+	<view class="myshare2" bindtap="clickMe"><button class="sharebutton"><i-icon type="homepage" size="24" color="#fff" /></button></view>
+  
 	<view class="footer">查看更多请访问在线四库全书:data.xinxueshuo.cn <navigator style="display:inline;color:#4b92ea;" url="/pages/dashboard/errmsg/errmsg" hover-class="navigator-hover">报告错误</navigator></view>
 </view>

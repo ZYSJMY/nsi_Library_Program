@@ -5,11 +5,11 @@
 </view>
 <scroll-view scroll-y='true' class="item" style="height:{{height}}px" bindscrolltolower='lower'>
 	<view class="main">
-	    <view class="search-view">
-	      <icon class="searchIcon" type="search" size="16"/>
-	      <input class='Search_Input_class' placeholder="请输入国际学校机构等关键词" value="{{contentValue}}" confirm-type='search' type='text'  bindconfirm="bindSearchEvent">{{searchKey}}</input>
-	      <view  wx:if="{{totalstatus}}" class="totalNum">搜索到{{listLength}}条数据</view>
-	    </view>
+		<view class="search-view">
+			<image class="searchIcon" src="../../../images/search.png"></image>
+			<input class='Search_Input_class' placeholder="搜索" confirm-type='search' type='text' value="{{contentValue}}"  bindconfirm="bindSearchEvent">{{searchKey}}</input>
+			<view  wx:if="{{totalstatus}}" class="totalNum">搜索到{{listLength}}条数据</view>
+		</view>
 	</view>
 	<view wx:if="{{liststatus}}" class="nothavemore" >没搜索到，换个关键词试试</view>
   	<view wx:for="{{list}}" wx:for-item="itemName">
@@ -24,14 +24,22 @@
 					    	<view style="overflow:hidden;height:21px;word-break: break-all;text-overflow: ellipsis;">{{ itemName.name }}</view>
 						</view>
 						<view class="i-card-right-bottom">
-					    	<view class="i-card-right-bottom-label"><view class="label-top">机构类型</view><view class="label-bottom" style="color:#0084ff">{{itemName.type}}</view></view>
-					    	<view class="i-card-right-bottom-label"><view class="label-top">成立时间</view><view class="label-bottom">{{itemName.foundTime==0||itemName.foundTime==null?'暂无':itemName.foundTime}}</view></view>
-					    	<view class="i-card-right-bottom-label"><view class="label-top">省份</view><view class="label-bottom">{{itemName.areas}}</view></view>
+						    <view class="i-card-right-bottom-label">
+								  <view class="label-bottom">
+									  <image style="width: 32rpx;height: 32rpx;vertical-align: text-top"  src="../../../images/dizhi.png" mode="aspectFit" />
+										{{itemName.areas}}</view>
+								</view>
+								<view class="i-card-right-bottom-label">
+                  <view class="label-bottom">类型：{{itemName.type}}</view>
+                </view>
+								<view class="i-card-right-bottom-label">
+                  <view class="label-bottom">成立时间：{{itemName.foundTime?itemName.foundTime:'暂无'}}</view>
+                </view>
+					    	
 					    </view>
 					</view>
 			    </view>
-			    
-			    <view class="i-class i-card-footer">简介 : {{ itemName.service }}</view>
+			    <!-- <view class="i-class i-card-footer">简介 : {{ itemName.service }}</view> -->
 			</view>
 	    </navigator>
 	</view>
