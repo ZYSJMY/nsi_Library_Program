@@ -10,6 +10,7 @@
     "pages/dashboard/about/about",
     "pages/dashboard/errmsg/errmsg",
     "pages/dashboard/feedback/feedback",
+    "pages/dashboard/giveUp/giveUp",
     "pages/dashboard/service/service",
     "pages/talentAdd/talentAdd",
     "pages/resume/resume",
@@ -42,7 +43,7 @@
       },
       {
         "pagePath": "pages/myInfor/myInfor",
-        "text": "关于",
+        "text": "我的",
         "iconPath": "static/9.png",
         "selectedIconPath": "static/10.png"
       }

@@ -7,12 +7,12 @@ Page({
     showBanner:[],
     outfitdetail:'',
     outfitid:'',
+    giveUP:false,
+    cId:''
   },
   tapName(data){
     console.log(data)
   },
-
-
   lower:function(){
     this.data.pageNum=this.data.pageNum+1
     this.ajaxlist()
@@ -26,6 +26,91 @@ Page({
   bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
+    })
+  },
+  giveUP:function(){
+    var that = this
+    if(that.data.giveUP ==false){
+      that.setData({
+        giveUP: true
+      })
+      wx.request({
+        url: 'https://data.xinxueshuo.cn/nsi-1.0/myCollect/add.do',
+        data: {
+          'openId': wx.getStorageSync('unionId'),
+          'cId': that.data.cId,
+          'collectType': 2
+        },
+        method:"POST",
+        header: {
+          // 'content-type': 'application/json' // GET默认值
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        success(res) {
+          console.log(res)
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: "收藏成功！",
+              icon: 'success',
+              duration: 1500,
+            })
+          }
+        }
+      })
+    }else{
+      that.setData({
+        giveUP: false
+      })
+      wx.request({
+        url: 'https://data.xinxueshuo.cn/nsi-1.0/myCollect/remove.do',
+        data: {
+          'openId': wx.getStorageSync('unionId'),
+          'cId': that.data.cId,
+          'collectType': 2
+        },
+        method:"get",
+        header: {
+          'content-type': 'application/json' // GET默认值
+          // "Content-Type": "application/x-www-form-urlencoded"
+        },
+        success(res) {
+          console.log(res)
+          if (res.data.code == 0) {
+            wx.showToast({
+              title: "取消收藏成功！",
+              icon: 'success',
+              duration: 1500,
+            })
+          }
+        }
+      })
+    }
+  },
+  check(id){
+    var that = this
+    wx.request({
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/myCollect/check.do',
+      data: {
+        'openId': wx.getStorageSync('unionId'),
+        'cId': id,
+        'collectType': 2
+      },
+      method:"get",
+      header: {
+        'content-type': 'application/json' // GET默认值
+      },
+      success(res) {
+        console.log(res)
+        if (res.data.code == 0) {
+          that.setData({
+            giveUP: false
+          })
+        } else {
+          that.setData({
+            giveUP: true
+          })
+        }
+      }
     })
   },
   ajaxlist(){
@@ -47,7 +132,10 @@ Page({
       },
       success(res) {
         console.log(res)
-        console.log(res.data.data)
+        that.check(res.data.data.id)
+        that.setData({
+          cId: res.data.data.id
+        })
         for (var value in res.data.data) {
           if (res.data.data[value] == 0 || res.data.data[value] == '0' || res.data.data[value] == null  ||  res.data.data[value] =="其他"){
             res.data.data[value]='暂无'

@@ -85,7 +85,7 @@
               <view>
                 <view wx:for="{{itemName.schoolSystem}}" class="schoolSysteList">{{item}}</view>
               </view>
-              <view class="schoolSyste {{itemName.operationState == '停办'?'schoolSystemRed':'schoolSysteGreen'}}">{{itemName.operationState}}</view>
+              <view class="schoolSyste {{itemName.operationState == '停办'||itemName.operationState == '待查'?'schoolSystemRed':'schoolSysteGreen'}}">{{itemName.operationState}}</view>
         </view>
         </view>
         </view>

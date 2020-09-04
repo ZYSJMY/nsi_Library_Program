@@ -8,6 +8,11 @@
   </view>
   <view class="linkBtn linkBtn2">
     <i-cell-group>
+      <i-cell title="我的收藏" is-link url="/pages/dashboard/giveUp/giveUp"></i-cell>
+    </i-cell-group>  
+  </view>
+  <view class="linkBtn">
+    <i-cell-group>
       <i-cell title="关于我们" is-link url="/pages/dashboard/about/about"></i-cell>
     </i-cell-group>  
   </view>

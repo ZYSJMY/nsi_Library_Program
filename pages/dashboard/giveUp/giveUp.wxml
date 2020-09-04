@@ -1,0 +1,92 @@
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">学校</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">机构</view>
+</view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
+  <swiper-item catchtouchmove="stopTouchMove">
+    <view style="text-align: center;margin-top:20rpx" class="{{listshow?'hide':'show'}}">学校暂无数据</view>
+    <view wx:for="{{list}}" wx:for-item="itemName" bindtap="schoolDetail" data-followerid="{{itemName.id}}">
+      <view class="{{listshow?'show':'hide'}}" class="page">
+        <view class="page__bd">
+          <view class="weui-cells">
+            <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-followerid="{{itemName.collectId}}">
+              <mp-cell>
+                <view class="i-card">
+                  <view class="i-card-header" style="flex-direction:row;">
+                    <view>
+                      <image lazy-load='true' class="i-card-header-thumb" src="{{itemName.icon?itemName.icon :'../../../static/1.png'}}" mode="aspectFit" />
+                    </view>
+                    <view class="i-card-right">
+                      <view class="i-card-right-top">
+                        <view style="overflow:hidden;height:42rpx;word-break: break-all;text-overflow: ellipsis;">{{ itemName.schoolName }}</view>
+                      </view>
+                      <view class="i-card-right-bottom">
+                        <view class="i-card-right-bottom-label">
+                          <view class="label-bottom">
+                            <image style="width: 32rpx;height: 32rpx;vertical-align: text-top" src="../../../images/dizhi.png" mode="aspectFit" />
+                            {{itemName.province}}</view>
+                        </view>
+                        <view class="i-card-right-bottom-label">
+                          <view class="label-bottom">类型：{{itemName.properties}}</view>
+                        </view>
+                        <view class="i-card-right-bottom-label">
+                          <view class="label-bottom">成立时间：{{itemName.foundTime?itemName.foundTime:'暂无'}}</view>
+                        </view>
+                      </view>
+                      <view class="i-class i-card-footer">
+                        <view>
+                          <view wx:for="{{itemName.system}}" class="schoolSysteList">{{item}}</view>
+                        </view>
+                        <view class="schoolSyste {{itemName.status == '停办'?'schoolSystemRed':'schoolSysteGreen'}}">{{itemName.status}}</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </mp-cell>
+            </mp-slideview>
+          </view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <swiper-item catchtouchmove="stopTouchMove">
+    <view style="text-align: center;margin-top:20rpx" class="{{listshow?'hide':'show'}}">机构暂无数据</view>
+    <view class="{{listshow?'show':'hide'}}" wx:for="{{list}}" wx:for-item="itemName" bindtap="companyDetail" data-followerid="{{itemName.id}}">
+      <view   class="page">
+        <view class="page__bd">
+          <view class="weui-cells">
+            <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" data-followerid="{{itemName.collectId}}">
+              <mp-cell>
+                <view class="i-card">
+                  <view class="i-card-header" style="flex-direction:row;">
+                    <view>
+                      <image class="i-card-header-thumb" src="{{ (itemName.institutionLogo=='0'||itemName.institutionLogo==null||itemName.institutionLogo=='')?'../../../static/1.png':itemName.institutionLogo }}" mode="aspectFit" />
+                    </view>
+                    <view class="i-card-right">
+                      <view class="i-card-right-top">
+                        <view style="overflow:hidden;height:21px;word-break: break-all;text-overflow: ellipsis;">{{ itemName.name }}</view>
+                      </view>
+                      <view class="i-card-right-bottom">
+                        <view class="i-card-right-bottom-label">
+                          <view class="label-bottom">
+                            <image style="width: 32rpx;height: 32rpx;vertical-align: text-top" src="../../../images/dizhi.png" mode="aspectFit" />
+                            {{itemName.areas}}</view>
+                        </view>
+                        <view class="i-card-right-bottom-label">
+                          <view class="label-bottom">类型：{{itemName.type}}</view>
+                        </view>
+                        <view class="i-card-right-bottom-label">
+                          <view class="label-bottom">成立时间：{{itemName.foundTime?itemName.foundTime:'暂无'}}</view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </mp-cell>
+            </mp-slideview>
+          </view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>
