@@ -66,4 +66,26 @@ Page({
       }
     })
   },
+  giveUp:function(e){
+    if (wx.getStorageSync('unionId') == "") {
+      wx.navigateTo({
+        url: '../login/login'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../dashboard/giveUp/giveUp'
+      })
+    }
+  }, 
+  SchoolRecord:function(e){
+    if (wx.getStorageSync('unionId') == "") {
+      wx.navigateTo({
+        url: '../login/login'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../dashboard/SchoolRecord/SchoolRecord'
+      })
+    }
+  }, 
 })

@@ -111,5 +111,16 @@ Page({
         })
       }
     })
-  }
+  },
+  enterHomePage:function(e){
+    if (wx.getStorageSync('unionId') == "") {
+      wx.navigateTo({
+        url: '../../login/login'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../companyDetail/companyDetail?id=' + e.currentTarget.dataset.followerid
+      })
+    }
+  },
 })

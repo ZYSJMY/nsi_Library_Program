@@ -6,9 +6,14 @@
     <view class="usrername">{{nickName}}</view>
     <view class="xinxueshuo">国际学校四库全书v1.2</view>
   </view>
-  <view class="linkBtn linkBtn2">
+  <view class="linkBtn linkBtn2" bindtap="giveUp">
+    <i-cell-group >
+      <i-cell title="我的收藏" is-link ></i-cell>
+    </i-cell-group>  
+  </view>
+  <view class="linkBtn" bindtap="SchoolRecord">
     <i-cell-group>
-      <i-cell title="我的收藏" is-link url="/pages/dashboard/giveUp/giveUp"></i-cell>
+      <i-cell title="访校记录" is-link></i-cell>
     </i-cell-group>  
   </view>
   <view class="linkBtn">

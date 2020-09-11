@@ -1,0 +1,26 @@
+.main{
+  padding: 10rpx 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid rgb(226, 226, 226);
+}
+.main image{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+.main .name{
+  vertical-align: middle;
+  margin-left: 40rpx;
+}
+.main .time{
+  float: right;
+  color: rgb(212, 212, 212);
+  vertical-align: middle;
+}
+.hide{
+  display:none;
+}
+.show{
+  display:block;
+}

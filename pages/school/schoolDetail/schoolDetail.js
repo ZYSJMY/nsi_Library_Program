@@ -275,7 +275,9 @@ Page({
         'attend': that.data.tihuoWay,
         'telphone': that.data.inputPhone,
         'remark': that.data.inputRemark,
-        'schoolId': wxdata.outfitid
+        'schoolId': wxdata.outfitid,
+        'fillDesc':1,
+        'openId':wx.getStorageSync('unionId')
       },
       method:"POST",
       header: {

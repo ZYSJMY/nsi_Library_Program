@@ -1,0 +1,8 @@
+<view style="text-align: center;margin-top:20rpx" class="{{listshow?'hide':'show'}}">暂无访校记录</view>
+<view wx:for="{{list}}" class="{{listshow?'show':'hide'}}">
+    <view class="main" bindtap="SchoolRecord" data-icon="{{item.icon}}" data-schoolname="{{item.schoolName}}" data-name="{{item.name}}" data-attend="{{item.attend}}" data-telphone="{{item.telphone}}" data-remark="{{item.remark}}" data-id="{{item.id}}">
+     <image src="../../../images/arrow-right.png"></image> 
+     <text class="name">{{item.schoolName}}</text>
+     <text class="time">{{item.createTime}}</text>
+    </view>
+</view>

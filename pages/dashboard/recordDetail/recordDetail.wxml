@@ -1,0 +1,43 @@
+<view class="record">
+  <view class="top">
+    <view class="record-icon">
+      <text class="text-size">学校logo</text>
+      <image style="width: 130rpx;height: 130rpx;vertical-align: middle;margin-left: 30rpx;" src="{{icon == ''?'../../../static/1.png':icon}}"></image>
+    </view>
+    <view class="top-schoolname">
+      <text class="text-size">学校名称</text>
+      <text style="margin-left: 30rpx;">{{schoolname}}</text>
+    </view>
+  </view>
+  <view class="top">
+    <view class="top-icon">
+      <text class="text-size">学生姓名</text>
+      <input class="weui-input" name="name" value="{{name}}"  bindblur="name"/>
+    </view>
+    <view class="top-icon">
+      <text class="text-size">在读年级</text>
+      <view class='select_box'>
+          <view class='select' catchtap='selectTap'>
+              <text class='select_text'>{{selectData[index]}}</text>
+              <image class='select_img {{selectShow&&"select_img_rotate"}}' src='../../../images/arrow-down.png'  background-size="contain"></image> 
+          </view>
+          <view class='option_box' style='height:{{selectShow?(selectData.length>5?325:selectData.length*50):0}}rpx;'>
+              <text class='option' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
+          </view>
+      </view>
+      <!-- <input class="weui-input" name="attend" value="{{attend}}" bindblur="attend" /> -->
+    </view>
+    <view class="top-icon">
+      <text class="text-size">手机号码</text>
+      <input class="weui-input" name="telphone" value="{{telphone}}" bindblur="telphone" />
+    </view>
+    <view class="top-icon" style="border:none">
+      <text class="text-size">申请备注</text>
+      <textarea class="weui-input" bindconfirm="remark"  auto-height maxlength="1000" value="{{remark}}"/>
+    </view>
+  </view>
+  <view class="foot">
+      <button class="btn" type="default" bindtap="callback">返回</button>
+      <button class="btn" type="primary" data-selectdata="{{selectData[index]}}" bindtap="modify">修改</button>
+  </view>
+</view>

@@ -12,8 +12,8 @@
 		</view>
 	</view>
 	<view wx:if="{{liststatus}}" class="nothavemore" >没搜索到，换个关键词试试</view>
-  	<view wx:for="{{list}}" wx:for-item="itemName">
-	    <navigator url="../companyDetail/companyDetail?id={{itemName.id}}" >
+  	<view wx:for="{{list}}" wx:for-item="itemName" bindtap="enterHomePage" data-followerid="{{itemName.id}}">
+	    <!-- <navigator url="../companyDetail/companyDetail?id={{itemName.id}}" > -->
 	      	<view class="i-card">
 			    <view class="i-card-header" style="flex-direction:row;">
 			        <view>
@@ -41,7 +41,7 @@
 			    </view>
 			    <!-- <view class="i-class i-card-footer">简介 : {{ itemName.service }}</view> -->
 			</view>
-	    </navigator>
+	    <!-- </navigator> -->
 	</view>
 	<i-load-more wx:if="{{bottomisshow}}" tip="加载中，请稍后" loading="{{ bottomLoading }}" />
 </scroll-view>
