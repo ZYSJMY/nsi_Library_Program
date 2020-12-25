@@ -1,0 +1,48 @@
+/* 评价 */
+page{
+  background-color: #eee;
+}
+.section{
+  background-color: #fff;
+  margin:20rpx 0;
+  padding: 20rpx;
+}
+.section textarea{
+  width: 100%;
+}
+.comment{
+  background-color: #fff;
+  padding: 20rpx;
+}
+.comment-title{
+  margin-bottom: 20rpx;
+}
+.comment-main .title{
+  display: inline-block;
+}
+.comment-main .img{
+  display: inline-block;
+  vertical-align: middle;
+}
+.stars{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 30rpx;
+}
+.startext{
+  margin-left: 30rpx;
+}
+
+
+.getcontent{
+  margin: 40rpx auto;
+  width: 200rpx;
+  height: 100rpx;
+  background: #fff;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: red;
+  font-size: 28rpx;
+  border: 2rpx solid red;
+}

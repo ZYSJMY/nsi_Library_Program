@@ -107,7 +107,7 @@
   <!-- 师资力量 -->
 	<view class="schoolDesc">
 		<view class="schoolDesc-top">
-		  <image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="../../../images/shizi.png"></image>
+		  <image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="https://nsi-official.oss-cn-zhangjiakou.aliyuncs.com/images/%E5%9B%9B%E5%BA%93%E5%85%A8%E4%B9%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/img/red.png"></image>
 			 <text>学生&教师</text>
 		</view>
 		<view class="schoolDesc-course" wx:if="{{outfitdetail.studentCapacity == '暂无'?false:true}}">
@@ -208,9 +208,56 @@
       <button type="primary" class="submit" bindtap="submit">立即提交</button>
     </view>
 	</view>
-	<view class="myshare1" bindtap="giveUP"><image src="{{giveUP == false?'../../../images/dianzan.png':'../../../images/meizan.png'}}" style="width: 78rpx;height: 78rpx;"></image></view>
-	<view class="myshare"><button class="sharebutton" open-type="share"><i-icon type="send" size="24" color="#fff" /></button></view>
-	<view class="myshare2" bindtap="clickMe"><button class="sharebutton"><i-icon type="homepage" size="24" color="#fff" /></button></view>
-  
+	<view class="schoolDesc {{hotDetails == ''?'hotDetails-main-kong':'hotDetails-main'}}">
+    <!-- 一级列表循环 -->
+    <!-- <view class="">帖子评论</view> -->
+    <view  wx:for="{{hotDetails}}"   class='hotDetails-main-list'>
+      <view class='hotDetails-main-list-top'>
+          <image src="{{item.portrait}}"/>
+          <view class="hotDetails-main-name">
+            <view class="name">{{item.nickname}}</view>
+            <view class="time">{{item.createTime}}</view>
+          </view>
+					<view  style="text-align: right;width: 50%;">
+						<view style="display: inline-block;" wx:for="{{item.score}}">
+						 <image style="width: 30rpx;height: 30rpx;margin-right:6rpx;vertical-align:middle" src="https://nsi-official.oss-cn-zhangjiakou.aliyuncs.com/images/%E5%9B%9B%E5%BA%93%E5%85%A8%E4%B9%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/img/red.png"/>
+						</view>
+						<view wx:if="{{item.score == 1}}" style="font-size:22rpx;display: inline-block;vertical-align:middle;margin-top: 4rpx;">
+						    非常不满意
+						</view>
+						<view wx:if="{{item.score == 2}}" style="font-size:22rpx;display: inline-block;vertical-align:middle;margin-top: 4rpx;">不满意</view>
+						<view wx:if="{{item.score == 3}}" style="font-size:22rpx;display: inline-block;vertical-align:middle;margin-top: 4rpx;">一般</view>
+						<view wx:if="{{item.score == 4}}" style="font-size:22rpx;display: inline-block;vertical-align:middle;margin-top: 4rpx;">满意</view>
+						<view wx:if="{{item.score == 5}}" style="font-size:22rpx;display: inline-block;vertical-align:middle;margin-top: 4rpx;">非常满意</view>
+					</view>
+			</view>
+      <view class='hotDetails-main-list-bottom' >
+        {{item.content}}
+      </view>
+    </view>
+  </view>
+	<!-- <view class="myshare3" bindtap="comment">评价</view> -->
+	<view class="myshare2" bindtap="giveUP"><image src="{{giveUP == false?'../../../images/dianzan.png':'../../../images/meizan.png'}}" style="width: 44rpx;height: 40rpx"></image></view>
+	
+	<view class="myshare" bindtap="clickMe"><button class="sharebutton"><i-icon type="homepage" size="24" color="#fff" /></button></view>
+
 	<view class="footer">查看更多请访问在线四库全书:data.xinxueshuo.cn <navigator style="display:inline;color:#4b92ea;" url="/pages/dashboard/errmsg/errmsg" hover-class="navigator-hover">报告错误</navigator></view>
+</view>
+
+<view class="but">
+	<input class="but-input" bindtap="comment" placeholder="说点什么吧" />
+	<view class="but-box but-left">
+  	<image class="but-img" src="../../../images/pinlun.png" style="width: 26rpx;height: 26rpx;"></image>
+		<text class="but-text" style="margin-right:10rpx">评论</text><text class="but-text">{{commentNum}}</text>
+	</view>
+	<view class="but-box but-left">
+  	<image class="but-img" src="../../../images/collectNum.png"></image>
+		<text class="but-text" style="margin-right:10rpx">收藏</text><text class="but-text">{{collectNum}}</text>
+	</view>
+	<view class="but-box but-right">
+	  <button class="but-fenxiang" open-type="share">
+		  <i-icon type="send" size="16" color="#707070"/>
+			<text class="but-text" style="display:block;margin-top: 26rpx;">分享</text>
+		</button>
+	</view>
 </view>

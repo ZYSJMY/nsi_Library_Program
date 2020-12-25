@@ -1,3 +1,4 @@
+var time = require('../../../utils/util.js')
 Page({
   data:{
     list:[],
@@ -7,24 +8,7 @@ Page({
     bottomisshow:true,
   },
   onLoad: function (option) {
-    var that=this
-
-    wx.request({
-      url: 'https://data.xinxueshuo.cn/nsi-1.0/article/list.do', //仅为示例，并非真实的接口地址
-      data: {
-        'pageNum': this.data.pageNum,
-        'pageSize': this.data.pageSize
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        // console.log(res.data.data.list)
-        that.setData({
-          list:res.data.data.list
-        })
-      }
-    })
+   
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -53,6 +37,9 @@ Page({
         'content-type': 'application/text'
       },
       success: function (res) {
+        for (var i = 0; i < res.data.data.list.length; i++) {
+          res.data.data.list[i].createTime = time.formatTimeTwo(res.data.data.list[i].createTime, "Y年M月D日")
+        }
         var listConcat = that.data.list.concat(res.data.data.list)
         // 回调函数
         // console.log(res)
@@ -70,6 +57,26 @@ Page({
 
   },
   onShow(e) {
+    var that=this
+    wx.request({
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/article/list.do', //仅为示例，并非真实的接口地址
+      data: {
+        'pageNum': this.data.pageNum,
+        'pageSize': this.data.pageSize
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        // console.log(res.data.data.list)
+        for (var i = 0; i < res.data.data.list.length; i++) {
+          res.data.data.list[i].createTime = time.formatTimeTwo(res.data.data.list[i].createTime, "Y年M月D日")
+        }
+        that.setData({
+          list:res.data.data.list
+        })
+      }
+    })
     wx.showShareMenu({
       withShareTicket: true
     })

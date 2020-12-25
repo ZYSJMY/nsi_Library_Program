@@ -1,12 +1,17 @@
 <view class='bottomLine' wx:for="{{list}}">
 <navigator url='../newsDetail/newsDetail?id={{item.id}}'>
     <view class='newsBox clearfix'>
+      <view class='newsTitle'>{{item.title}}</view>
+      <view class='newsInfo'>
+        <view class=' newsDetail'>{{item.summary}}</view>
+      </view>
       <view class='newsImg'>
         <image lazy-load='true' mode='aspectFill' src='{{item.coverImage}}?x-oss-process=image/resize,p_30'></image>
       </view>
-      <view class='newsInfo'>
-        <view class='newsTitle'>{{item.title}}</view>
-        <view class=' newsDetail'>{{item.summary}}</view>
+      <view class="comment">
+        <text style="margin-right: 15px;">编辑：{{item.articleWriter}}</text>
+        <text>阅读 {{item.articleReader==null?'0':item.articleReader}}</text>
+        <text style="margin-left: 15px;" class="publishTime">{{item.createTime}}</text>
       </view>
     </view>
   </navigator>

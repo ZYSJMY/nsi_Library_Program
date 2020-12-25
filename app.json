@@ -18,7 +18,8 @@
     "pages/wechatBind/wechatBind",
     "pages/login/login",
     "pages/modifyMy/modifyMy",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/comment/comment"
   ],
   "tabBar": {
     "selectedColor": "#215089",

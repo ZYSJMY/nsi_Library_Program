@@ -45,26 +45,38 @@ Page({
   },
   onShow(e) {
     var that=this
-    wx.getSetting({
-      success (res) {
-        let data=res.authSetting
-        that.setData({
-          authorizationstatus:!data['scope.userInfo']
-        })
-        if(data['scope.userInfo']){
-          
-          if(wx.getStorageSync('nickName')){
-            that.setData({
-              nickName:wx.getStorageSync('nickName'),
-              avatarUrl:wx.getStorageSync('avatarUrl')
-            })
-          }else{
-            that.authorization()
+    if (wx.getStorageSync('unionId') == "") {
+      that.setData({
+        post: 0,
+        follow: 0,
+        collection: 0,
+        fans:0,
+        avatarUrl: '../../images/mineTou.png',//用户头像地址
+        nickName:  '授权登录',//用户姓名
+        score:"0"
+      })
+    } else {
+      wx.getSetting({
+        success (res) {
+          let data=res.authSetting
+          that.setData({
+            authorizationstatus:!data['scope.userInfo']
+          })
+          if(data['scope.userInfo']){
+            
+            if(wx.getStorageSync('nickName')){
+              that.setData({
+                nickName:wx.getStorageSync('nickName'),
+                avatarUrl:wx.getStorageSync('avatarUrl')
+              })
+            }else{
+              that.authorization()
+            }
+            
           }
-          
         }
-      }
-    })
+      })
+    }
   },
   giveUp:function(e){
     if (wx.getStorageSync('unionId') == "") {
@@ -88,4 +100,28 @@ Page({
       })
     }
   }, 
+  materials: function () {
+    console.log(wx.getStorageSync('unionId'))
+    if (wx.getStorageSync('unionId') == ""){
+      wx.navigateTo({
+        url: '../login/login',
+      }) 
+    }else{
+      
+    }
+  }, 
+  mineBtn:function(){
+    var that = this
+    wx.clearStorage({
+      success(res) {
+        console.log(res)
+        wx.showToast({
+          title: '已清空缓存',
+          icon: 'success',
+          duration: 1500
+        })
+        that.onShow()
+      }
+    })
+  },
 })

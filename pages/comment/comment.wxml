@@ -1,0 +1,19 @@
+<!-- 学校评分 -->
+<view class="section">
+  <textarea bindblur="bindTextAreaBlur" placeholder="从多个角度评价学校，可以帮助更多想要了解的人" />
+</view>
+<view class="comment">
+    <view class="comment-title">
+      <image style="width: 30rpx;height: 30rpx;margin-right: 16rpx;" src="../../images/jijian.png"></image>
+			<text>学校评价</text>
+    </view>
+    <view class="comment-main">
+      <view class="title">学校评分</view>
+      <view class="img">
+        <image class='stars' bindtap="changeColor" data-index='0' data-no="{{item}}" wx:for="{{stardata}}" wx:key="index"
+            src="{{flag[0]>=item? 'https://nsi-official.oss-cn-zhangjiakou.aliyuncs.com/images/%E5%9B%9B%E5%BA%93%E5%85%A8%E4%B9%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/img/red.png': 'https://nsi-official.oss-cn-zhangjiakou.aliyuncs.com/images/%E5%9B%9B%E5%BA%93%E5%85%A8%E4%B9%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/img/empty.png'}}" />
+      </view>
+      <view class="title startext">{{startext[0]}}</view>
+    </view>
+</view>
+<view class="getcontent" bindtap="getcontent">提交评价</view>

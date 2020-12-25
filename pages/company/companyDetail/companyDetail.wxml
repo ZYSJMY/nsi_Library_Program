@@ -78,7 +78,7 @@
 			<view class="schoolDesc-top">备注</view>
 			<text class="schoolDesc-course">{{ outfitdetail.introduction }}</text>
 	</view>
-	<view class="myshare1" bindtap="giveUP"><image src="{{giveUP == false?'../../../images/dianzan.png':'../../../images/meizan.png'}}" style="width: 78rpx;height: 78rpx;"></image></view>
+	<view class="myshare1" bindtap="giveUP"><image src="{{giveUP == false?'https://nsi-official.oss-cn-zhangjiakou.aliyuncs.com/images/%E5%9B%9B%E5%BA%93%E5%85%A8%E4%B9%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/img/':'../../../images/meizan.png'}}" style="width: 78rpx;height: 78rpx;"></image></view>
 	<view class="myshare"><button class="sharebutton" open-type="share"><i-icon type="send" size="24" color="#fff" /></button></view>
 	<view class="myshare2" bindtap="clickMe"><button class="sharebutton"><i-icon type="homepage" size="24" color="#fff" /></button></view>
 	<view class="footer">查看更多请访问在线四库全书:data.xinxueshuo.cn <navigator style="display:inline;color:#4b92ea;" url="/pages/dashboard/errmsg/errmsg" hover-class="navigator-hover">报告错误</navigator></view>

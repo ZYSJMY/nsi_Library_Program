@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+var time = require('../../../utils/util.js')
 Page({
   scroll(e) {
     // console.log(e)
@@ -30,7 +30,10 @@ Page({
     interval: 2000,
     duration: 500,
     giveUP:false,
-    cId:''
+    cId:'',
+    hotDetails: "",// 一级二级评论数据列表
+    collectNum:'',
+    commentNum:''
   },
   bindShowMsg() {
     let that=this
@@ -327,8 +330,70 @@ Page({
     wx.showShareMenu({
       withShareTicket: true
     })
+    this.commentAndSonlist(this.data.outfitid)
+    this.get_comment_count(this.data.outfitid)
   },
   getUserInfo: function(e) {
     
-  }
+  },
+  comment:function(e){
+    if (wx.getStorageSync('unionId') == "") {
+      wx.navigateTo({
+        url: '../../login/login'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../../comment/comment?id='+this.data.cId
+      })
+    }
+  }, 
+  commentAndSonlist(e){
+    var that = this
+    wx.request({
+      url: 'https://data.xinxueshuo.cn/nsi-1.0/communityComment/CommentAndSonlist',
+      // url: 'http://192.168.0.102:8080/nsi-1.0/communityComment/CommentAndSonlist',
+      data: {
+        id:e,
+        pageNum:"1",
+        pageSize: "10"
+      },
+      method:"POST",
+      header: {
+        // 'content-type': 'application/json' // GET默认值
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success(res) {
+        console.log(res.count)
+        for (var i = 0; i < res.data.data.length; i++) {
+          res.data.data[i].createTime = time.getDateDiff(res.data.data[i].createTime)
+          res.data.data[i].content = time.uncodeUtf16(res.data.data[i].content)
+          res.data.data[i].nickname = time.uncodeUtf16(res.data.data[i].nickname)
+        }
+        that.setData({
+          hotDetails: res.data.data
+        })
+      }
+    })
+  },
+  get_comment_count(e){
+    var that = this
+    wx.request({
+      url: 'https://data.xinxueshuo.cn/nsi-1.0//new/school/get_comment_count.do',
+      // url: 'http://192.168.0.102:8080/nsi-1.0//new/school/get_comment_count.do',
+      data: {
+        schoolId:e
+      },
+      header: {
+        'content-type': 'application/json' // GET默认值
+        // "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success(res) {
+        console.log(res.data.data)
+        that.setData({
+          collectNum: res.data.data.collectNum,
+          commentNum:res.data.data.commentNum
+        })
+      }
+    })
+  },
 })

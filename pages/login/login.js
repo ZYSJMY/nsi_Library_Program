@@ -70,6 +70,7 @@ Page({
         console.log(res.data.data.nickName)
         wx.setStorageSync('unionId', res.data.data.unionId)
         wx.setStorageSync('avatarUrl', res.data.data.avatarUrl)
+        wx.setStorageSync('nickName', res.data.data.nickName)
         that.setData({
           wechatNickname: res.data.data.nickName,
           unionId: res.data.data.unionId,

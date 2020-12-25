@@ -198,6 +198,7 @@ Page({
     this.setData({
         accountIndex: e.detail.value,
     })
+    console.log(this.data.accountIndex)
   },
   // 工作年限
   bindworkYears(e) {
